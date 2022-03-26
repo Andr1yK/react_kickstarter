@@ -3,106 +3,45 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable jsx-a11y/anchor-has-content */
 
-import { FC } from 'react';
+import { FC, useCallback, useState } from 'react';
 
 import './App.scss';
-import Container from './components/Container/Container';
 import Content from './components/Content/Content';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
-import { logo } from './images';
+import MobileNav from './components/MobileNav/MobileNav';
 
 const App: FC = () => {
+  const [menuIsOpen, setMenuIsOpen] = useState(false);
+  const [lang, setLang] = useState('en');
+
+  const onMenuOpen = useCallback(() => {
+    setMenuIsOpen(true);
+  }, []);
+
+  const onMenuClose = useCallback(() => {
+    setMenuIsOpen(false);
+  }, []);
+
+  const onSelectLang = useCallback((selectedLang: string) => {
+    setLang(selectedLang);
+  }, []);
+
   return (
     <>
-      <Header className="page__header" />
+      <Header
+        className="page__header"
+        onMenuToggle={onMenuOpen}
+        lang={lang}
+        onSelectLang={onSelectLang}
+      />
 
-      <nav className="page__menu menu" id="menu">
-        <Container>
-          <div className="menu__content">
-            <div className="menu__top">
-              <a
-                href="https://crazybaby.com/"
-                className="logo"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <img src={logo} alt="crazy baby logo" className="logo__image" />
-              </a>
-
-              <div className="menu__cross">
-                <a href="#" className="icon icon--cross menu-close" />
-              </div>
-            </div>
-
-            <ul className="menu__list">
-              <li className="menu__item">
-                <a href="#specs-mob" className="menu__link link linkTo">
-                  SPECS
-                </a>
-              </li>
-              <li className="menu__item">
-                <a href="#our-story-mob" className="menu__link link linkTo">
-                  OUR STORY
-                </a>
-              </li>
-              <li className="menu__item">
-                <a href="#about-us-mob" className="menu__link link linkTo">
-                  ABOUT US
-                </a>
-              </li>
-              <li className="menu__item">
-                <a href="#technology-mob" className="menu__link link linkTo">
-                  TECHNOLOGY
-                </a>
-              </li>
-              <li className="menu__item">
-                <a href="#features-mob" className="menu__link link linkTo">
-                  FEATURES
-                </a>
-              </li>
-              <li className="menu__item">
-                <a href="#contact-us-mob" className="menu__link link linkTo">
-                  GET IN TOUCH
-                </a>
-              </li>
-            </ul>
-
-            <div className="menu__lang-swicher lang-swicher">
-              <label className="lang-swicher__label" htmlFor="lang-swicher-en">
-                <input
-                  className="lang-swicher__input"
-                  type="radio"
-                  name="lang-menu"
-                  checked
-                  id="lang-swicher-en"
-                />
-                <span className="lang-swicher__text">EN</span>
-              </label>
-              <label className="lang-swicher__label" htmlFor="lang-swicher-ua">
-                <input
-                  className="lang-swicher__input"
-                  type="radio"
-                  name="lang-menu"
-                  id="lang-swicher-ua"
-                />
-                <span className="lang-swicher__text">UA</span>
-              </label>
-            </div>
-
-            <a
-              href="cart.html"
-              className="
-              menu__buy
-              button
-              button--size--full
-            "
-            >
-              Buy
-            </a>
-          </div>
-        </Container>
-      </nav>
+      <MobileNav
+        isOpen={menuIsOpen}
+        onMenuClose={onMenuClose}
+        lang={lang}
+        onSelectLang={onSelectLang}
+      />
 
       <Content />
 

@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 import {
   calipers,
@@ -15,7 +15,7 @@ import {
 
 import Container from '../Container/Container';
 
-const Content: FC = () => {
+const Content: FC = memo(() => {
   return (
     <main className="main">
       <section className="page__section first-screen">
@@ -546,6 +546,6 @@ const Content: FC = () => {
       </section>
     </main>
   );
-};
+});
 
 export default Content;

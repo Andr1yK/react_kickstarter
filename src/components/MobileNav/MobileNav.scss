@@ -1,5 +1,21 @@
+@import '../../styles/utils';
+
 .menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  transform: translateX(-100%);
+
   background-color: $c-light;
+
+  @include transitions(transform);
+
+  &--open {
+    transform: translate(0);
+  }
+
 
   &__content {
     height: 100vh;

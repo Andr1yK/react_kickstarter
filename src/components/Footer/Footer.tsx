@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable jsx-a11y/anchor-has-content */
 
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 import { logo } from '../../images';
 import Container from '../Container/Container';
@@ -12,7 +12,7 @@ type Props = {
   className?: string;
 };
 
-const Footer: FC<Props> = ({ className }) => {
+const Footer: FC<Props> = memo(({ className }) => {
   return (
     <footer className={`footer ${className}`}>
       <Container>
@@ -69,7 +69,7 @@ const Footer: FC<Props> = ({ className }) => {
       </Container>
     </footer>
   );
-};
+});
 
 Footer.defaultProps = {
   className: '',

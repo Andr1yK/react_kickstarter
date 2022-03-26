@@ -38,6 +38,7 @@
 
   &__menu-opener {
     width: 24px;
+
     @include onTablet {
       display: none;
     }
