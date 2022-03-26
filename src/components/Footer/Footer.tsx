@@ -3,8 +3,8 @@
 
 import { FC, memo } from 'react';
 
-import { logo } from '../../images';
 import Container from '../Container/Container';
+import Logo from '../Logo/Logo';
 
 import './Footer.scss';
 
@@ -17,14 +17,7 @@ const Footer: FC<Props> = memo(({ className }) => {
     <footer className={`footer ${className}`}>
       <Container>
         <div className="footer__content">
-          <a
-            href="https://crazybaby.com/"
-            className="footer__logo logo"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <img src={logo} alt="crazy baby logo" className="logo__image" />
-          </a>
+          <Logo />
 
           <div className="footer__social">
             <a

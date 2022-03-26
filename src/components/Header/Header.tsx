@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
-import { logo } from '../../images';
 import Container from '../Container/Container';
 import LangSwicher from '../LangSwicher/LangSwicher';
+import Logo from '../Logo/Logo';
 
 import './Header.scss';
 
@@ -18,14 +18,7 @@ const Header: FC<Props> = memo(
       <header className={`header ${className}`}>
         <Container>
           <div className="header__content">
-            <a
-              href="https://crazybaby.com/"
-              className="logo"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <img src={logo} alt="crazy baby logo" className="logo__image" />
-            </a>
+            <Logo />
 
             <button
               type="button"

@@ -3,9 +3,9 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
 
 import { FC, memo } from 'react';
-import { logo } from '../../images';
 import Container from '../Container/Container';
 import LangSwicher from '../LangSwicher/LangSwicher';
+import Logo from '../Logo/Logo';
 
 import './MobileNav.scss';
 
@@ -23,14 +23,7 @@ const MobileNav: FC<Props> = memo(
         <Container>
           <div className="menu__content">
             <div className="menu__top">
-              <a
-                href="https://crazybaby.com/"
-                className="logo"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <img src={logo} alt="crazy baby logo" className="logo__image" />
-              </a>
+              <Logo />
 
               <div className="menu__cross">
                 <button
