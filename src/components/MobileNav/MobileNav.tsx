@@ -17,7 +17,9 @@ type Props = {
 };
 
 const MobileNav: FC<Props> = memo(
-  ({ isOpen, onMenuClose, lang, onSelectLang }) => {
+  ({
+    isOpen, onMenuClose, lang, onSelectLang,
+  }) => {
     return (
       <nav className={`menu ${isOpen && 'menu--open'}`} id="menu">
         <Container>

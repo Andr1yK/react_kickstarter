@@ -5,7 +5,9 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable jsx-a11y/anchor-has-content */
 
-import { FC, useCallback, useState, useEffect } from 'react';
+import {
+  FC, useCallback, useState, useEffect,
+} from 'react';
 
 import './App.scss';
 import Content from './components/Content/Content';
@@ -69,8 +71,6 @@ const App: FC = () => {
   const scrollToTop = () => {
     window.scrollTo(0, 0);
   };
-
-  console.log('render');
 
   return (
     <>

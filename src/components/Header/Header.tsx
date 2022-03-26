@@ -12,46 +12,46 @@ type Props = {
   onSelectLang: (lang: string) => void;
 };
 
-const Header: FC<Props> = memo(
-  ({ className, onMenuToggle, lang, onSelectLang }) => {
-    return (
-      <header className={`header ${className}`}>
-        <Container>
-          <div className="header__content">
-            <Logo />
+const Header: FC<Props> = memo(({
+  className, onMenuToggle, lang, onSelectLang,
+}) => {
+  return (
+    <header className={`header ${className}`}>
+      <Container>
+        <div className="header__content">
+          <Logo />
 
-            <button
-              type="button"
-              onClick={onMenuToggle}
-              className="
-              header__menu-opener
-              icon
-              icon--menu-opener
-              menu-opener
-            "
-            >
-              <span />
-              <span />
-              <span />
-            </button>
+          <button
+            type="button"
+            onClick={onMenuToggle}
+            className="
+            header__menu-opener
+            icon
+            icon--menu-opener
+            menu-opener
+          "
+          >
+            <span />
+            <span />
+            <span />
+          </button>
 
-            <div className="header__nav">
-              <a href="#specs" className="header__link link linkTo">
-                SPECS
-              </a>
+          <div className="header__nav">
+            <a href="#specs" className="header__link link linkTo">
+              SPECS
+            </a>
 
-              <LangSwicher currentLang={lang} onSelectLang={onSelectLang} />
+            <LangSwicher currentLang={lang} onSelectLang={onSelectLang} />
 
-              <a href="cart.html" className="header__buy button button--buy">
-                Buy
-              </a>
-            </div>
+            <a href="cart.html" className="header__buy button button--buy">
+              Buy
+            </a>
           </div>
-        </Container>
-      </header>
-    );
-  },
-);
+        </div>
+      </Container>
+    </header>
+  );
+});
 
 Header.defaultProps = {
   className: '',
