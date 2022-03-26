@@ -17,7 +17,7 @@ const Footer: FC<Props> = memo(({ className }) => {
     <footer className={`footer ${className}`}>
       <Container>
         <div className="footer__content">
-          <Logo />
+          <Logo className="footer__logo " />
 
           <div className="footer__social">
             <a

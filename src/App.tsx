@@ -1,9 +1,11 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/media-has-caption */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable jsx-a11y/anchor-has-content */
 
-import { FC, useCallback, useState } from 'react';
+import { FC, useCallback, useState, useEffect } from 'react';
 
 import './App.scss';
 import Content from './components/Content/Content';
@@ -11,9 +13,45 @@ import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import MobileNav from './components/MobileNav/MobileNav';
 
+function throttle(f: (...args: unknown[]) => unknown, delay: number) {
+  let isRun = false;
+  let timerId: NodeJS.Timeout;
+
+  return function wrapper(...args: unknown[]) {
+    if (!isRun) {
+      f(...args);
+      isRun = true;
+
+      // eslint-disable-next-line no-return-assign
+      setTimeout(() => (isRun = false), delay);
+    }
+
+    clearTimeout(timerId);
+    timerId = setTimeout(() => f(...args), delay);
+  };
+}
+
 const App: FC = () => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [lang, setLang] = useState('en');
+
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  const handleScroll = () => {
+    setScrollPosition(window.scrollY);
+  };
+
+  useEffect(() => {
+    const handleTrottledScroll = throttle(handleScroll, 500);
+
+    window.addEventListener('scroll', handleTrottledScroll, {
+      passive: true,
+    });
+
+    return () => {
+      window.removeEventListener('scroll', handleTrottledScroll);
+    };
+  }, []);
 
   const onMenuOpen = useCallback(() => {
     setMenuIsOpen(true);
@@ -26,6 +64,13 @@ const App: FC = () => {
   const onSelectLang = useCallback((selectedLang: string) => {
     setLang(selectedLang);
   }, []);
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
+
+  console.log('render');
 
   return (
     <>
@@ -47,10 +92,15 @@ const App: FC = () => {
 
       <Footer className="page__footer" />
 
-      <div className="go-top page__go-top container">
+      <div
+        className={`go-top page__go-top container ${
+          scrollPosition > 800 && 'go-top--visible'
+        }`}
+      >
         <div className="go-top__button">
-          <a
-            href="#"
+          <button
+            type="button"
+            onClick={scrollToTop}
             className="
           go-top__link
           icon
