@@ -7,7 +7,7 @@ import sun from './images/icons/features/sun.svg';
 import design from './images/design.jpg';
 import technology from './images/technology-1024w.png';
 import martin from './images/martin.jpg';
-import features from './images/features-1920w.png';
+import featuresImage from './images/features-1920w.png';
 
 export {
   logo,
@@ -19,5 +19,5 @@ export {
   design,
   technology,
   martin,
-  features,
+  featuresImage,
 };
