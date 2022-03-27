@@ -14,26 +14,24 @@ const LangSwicher: FC<Props> = memo(
   ({ className, currentLang, onSelectLang }) => {
     return (
       <div className={`lang-swicher ${className}`}>
-        {languages.map((language) => {
-          return (
-            <label
-              className={`lang-swicher__label ${
-                currentLang === language && 'lang-swicher__label--active'
-              }`}
-              htmlFor={`lang-swicher-${language}`}
-            >
-              <input
-                className="lang-swicher__input"
-                type="button"
-                id={`lang-swicher-${language}`}
-                onClick={() => onSelectLang(language)}
-              />
-              <span className="lang-swicher__text">
-                {language.toUpperCase()}
-              </span>
-            </label>
-          );
-        })}
+        {languages.map((language) => (
+          <label
+            key={language}
+            className={`lang-swicher__label ${
+              currentLang === language && 'lang-swicher__label--active'}`}
+            htmlFor={`lang-swicher-${language}`}
+          >
+            <input
+              className="lang-swicher__input"
+              type="button"
+              id={`lang-swicher-${language}`}
+              onClick={() => onSelectLang(language)}
+            />
+            <span className="lang-swicher__text">
+              {language.toUpperCase()}
+            </span>
+          </label>
+        ))}
       </div>
     );
   },

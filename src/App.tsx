@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/media-has-caption */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/control-has-associated-label */
@@ -39,63 +37,68 @@ const App: FC = () => {
 
   const [scrollPosition, setScrollPosition] = useState(0);
 
-  const handleScroll = () => {
-    setScrollPosition(window.scrollY);
-  };
+  const [deviceType] = useState({
+    onTablet: window.matchMedia('(min-width: 768px)').matches,
+    onDesktop: window.matchMedia('(min-width: 1024px)').matches,
+  });
 
   useEffect(() => {
-    const handleTrottledScroll = throttle(handleScroll, 500);
+    if (menuIsOpen) {
+      document.body.classList.add('page__body--with-menu');
+    } else {
+      document.body.classList.remove('page__body--with-menu');
+    }
+  }, [menuIsOpen]);
 
-    window.addEventListener('scroll', handleTrottledScroll, {
+  useEffect(() => {
+    const handleScroll = throttle(() => setScrollPosition(window.scrollY), 250);
+
+    window.addEventListener('scroll', handleScroll, {
       passive: true,
     });
 
     return () => {
-      window.removeEventListener('scroll', handleTrottledScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
-  const onMenuOpen = useCallback(() => {
-    setMenuIsOpen(true);
-  }, []);
-
-  const onMenuClose = useCallback(() => {
-    setMenuIsOpen(false);
-  }, []);
+  const onMenuToggle = useCallback(() => {
+    setMenuIsOpen(!menuIsOpen);
+  }, [menuIsOpen]);
 
   const onSelectLang = useCallback((selectedLang: string) => {
     setLang(selectedLang);
   }, []);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const scrollToTop = () => {
+  const scrollToTop = useCallback(() => {
     window.scrollTo(0, 0);
-  };
+  }, []);
 
   return (
     <>
       <Header
         className="page__header"
-        onMenuToggle={onMenuOpen}
+        onMenuToggle={onMenuToggle}
         lang={lang}
         onSelectLang={onSelectLang}
       />
 
-      <MobileNav
-        isOpen={menuIsOpen}
-        onMenuClose={onMenuClose}
-        lang={lang}
-        onSelectLang={onSelectLang}
-      />
+      {!deviceType.onDesktop && (
+        <MobileNav
+          isOpen={menuIsOpen}
+          onMenuToggle={onMenuToggle}
+          lang={lang}
+          onSelectLang={onSelectLang}
+        />
+      )}
 
-      <Content />
+      <Content deviceType={deviceType} />
 
       <Footer className="page__footer" />
 
       <div
         className={`go-top page__go-top container ${
-          scrollPosition > 800 && 'go-top--visible'
-        }`}
+          scrollPosition > 700 && 'go-top--visible'}`}
       >
         <div className="go-top__button">
           <button

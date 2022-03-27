@@ -1,8 +1,8 @@
+/* eslint-disable no-return-assign */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import { FC, memo } from 'react';
 
-import {
-  calipers,
+import { calipers,
   design,
   featuresImage,
   headerImage,
@@ -10,12 +10,19 @@ import {
   speaker,
   sun,
   technology,
-  wifi,
-} from '../../images';
+  wifi } from '../../images';
 
 import Container from '../Container/Container';
+import NavList from '../NavList/NavList';
 
-const Content: FC = memo(() => {
+type Props = {
+  deviceType: {
+    onTablet: boolean,
+    onDesktop: boolean,
+  },
+};
+
+const Content: FC<Props> = ({ deviceType }) => {
   return (
     <main className="main">
       <section className="page__section first-screen">
@@ -48,7 +55,7 @@ const Content: FC = memo(() => {
               </h1>
 
               <p className="first-screen__description">
-                Luna’s performance is balanced and smooth in all frequency
+                Luna&apos;s performance is balanced and smooth in all frequency
                 ranges which makes the music both naturally pleasant and
                 distinctly more layered.
               </p>
@@ -81,47 +88,13 @@ const Content: FC = memo(() => {
         </Container>
       </section>
 
-      <section
-        className="navigation
-          page__section
-          page__section--nav
-        "
-      >
-        <Container>
-          <ul className="navigation__list">
-            <li className="navigation__item">
-              <a href="#specs" className="navigation__link link linkTo">
-                SPECS
-              </a>
-            </li>
-            <li className="navigation__item">
-              <a href="#our-story" className="navigation__link link linkTo">
-                OUR STORY
-              </a>
-            </li>
-            <li className="navigation__item">
-              <a href="#about-us" className="navigation__link link linkTo">
-                ABOUT US
-              </a>
-            </li>
-            <li className="navigation__item">
-              <a href="#technology" className="navigation__link link linkTo">
-                TECHNOLOGY
-              </a>
-            </li>
-            <li className="navigation__item">
-              <a href="#features" className="navigation__link link linkTo">
-                FEATURES
-              </a>
-            </li>
-            <li className="navigation__item">
-              <a href="#contact-us" className="navigation__link link linkTo">
-                GET IN TOUCH
-              </a>
-            </li>
-          </ul>
-        </Container>
-      </section>
+      {deviceType.onDesktop && (
+        <section className="navigation page__section page__section--nav ">
+          <Container>
+            <NavList blockName="navigation" />
+          </Container>
+        </section>
+      )}
 
       <section
         id="specs"
@@ -546,6 +519,6 @@ const Content: FC = memo(() => {
       </section>
     </main>
   );
-});
+};
 
-export default Content;
+export default memo(Content);

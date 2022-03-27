@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 
 import './Logo.scss';
 
@@ -25,4 +25,4 @@ Logo.defaultProps = {
   className: '',
 };
 
-export default Logo;
+export default memo(Logo);
