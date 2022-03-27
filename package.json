@@ -13,7 +13,7 @@
     "update": "mate-scripts update",
     "postinstall": "npm run update",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "npm run lint && gh-pages -d build"
   },
   "repository": {
     "type": "git",
