@@ -1,6 +1,8 @@
 import React, { FC, LegacyRef, useCallback, useRef, useState, memo } from 'react';
 import Container from '../Container/Container';
 
+import './ContactUs.scss';
+
 const ContactUs: FC = () => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -36,6 +38,8 @@ const ContactUs: FC = () => {
       setEmail('');
       setMessage('');
       setTimeout(() => window.scrollTo(0, 0), 500);
+      emailRef.current?.classList.remove('contact__form-field--valid');
+      messageRef.current?.classList.remove('contact__form-field--valid');
     }
   }, [email, message]);
 
