@@ -11,6 +11,7 @@ import { calipers,
   sun,
   technology,
   wifi } from '../../images';
+import ContactUs from '../ContactUs/ContactUs';
 
 import Container from '../Container/Container';
 import NavList from '../NavList/NavList';
@@ -461,62 +462,7 @@ const Content: FC<Props> = ({ deviceType, onPopupToggle }) => {
         </Container>
       </section>
 
-      <section
-        id="contact-us"
-        data-sect-name="contact-us-mob"
-        className="page__section contact"
-      >
-        <Container>
-          <div className="contact__content">
-            <div className="grid grid--tablet">
-              <h2
-                className="
-                  contact__title
-                  grid__item--t--1-4
-                  grid__item--d--2-6
-                "
-              >
-                DO YOU HAVE ANY QUESTIONS?
-              </h2>
-              <form
-                action="https://httpbin.org/post"
-                method="post"
-                className="
-                  contact__form
-                  grid__item--t--5-8
-                  grid__item--d--7-11
-                "
-              >
-                <label htmlFor="contact-email">
-                  <input
-                    type="email"
-                    name="email"
-                    className="contact__form-field contact__email"
-                    id="contact-email"
-                    placeholder="Your email"
-                    required
-                  />
-                </label>
-                <textarea
-                  name="message"
-                  className="
-                      contact__message
-                      contact__form-field
-                      contact__form-field--last
-                      contact__form-field--textarea
-                    "
-                  placeholder="Your message..."
-                  required
-                />
-
-                <button type="submit" className="button button--color--green">
-                  Send
-                </button>
-              </form>
-            </div>
-          </div>
-        </Container>
-      </section>
+      <ContactUs />
     </main>
   );
 };
