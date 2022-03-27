@@ -3,9 +3,10 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable jsx-a11y/anchor-has-content */
 
-import {
-  FC, useCallback, useState, useEffect,
-} from 'react';
+import { FC,
+  useCallback,
+  useState,
+  useEffect } from 'react';
 
 import './App.scss';
 import Content from './components/Content/Content';
@@ -34,6 +35,7 @@ function throttle(f: (...args: unknown[]) => unknown, delay: number) {
 const App: FC = () => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [lang, setLang] = useState('en');
+  const [popupIsOpen, setPopupIsOpen] = useState(false);
 
   const [scrollPosition, setScrollPosition] = useState(0);
 
@@ -43,12 +45,12 @@ const App: FC = () => {
   });
 
   useEffect(() => {
-    if (menuIsOpen) {
+    if (menuIsOpen || popupIsOpen) {
       document.body.classList.add('page__body--with-menu');
     } else {
       document.body.classList.remove('page__body--with-menu');
     }
-  }, [menuIsOpen]);
+  }, [menuIsOpen, popupIsOpen]);
 
   useEffect(() => {
     const handleScroll = throttle(() => setScrollPosition(window.scrollY), 250);
@@ -69,6 +71,10 @@ const App: FC = () => {
   const onSelectLang = useCallback((selectedLang: string) => {
     setLang(selectedLang);
   }, []);
+
+  const onPopupToggle = useCallback(() => {
+    setPopupIsOpen(!popupIsOpen);
+  }, [popupIsOpen]);
 
   const scrollToTop = useCallback(() => {
     window.scrollTo(0, 0);
@@ -92,13 +98,12 @@ const App: FC = () => {
         />
       )}
 
-      <Content deviceType={deviceType} />
+      <Content deviceType={deviceType} onPopupToggle={onPopupToggle} />
 
       <Footer className="page__footer" />
 
       <div
-        className={`go-top page__go-top container ${
-          scrollPosition > 700 && 'go-top--visible'}`}
+        className={`go-top page__go-top container ${scrollPosition > 700 && 'go-top--visible'}`}
       >
         <div className="go-top__button">
           <button
@@ -114,12 +119,16 @@ const App: FC = () => {
         </div>
       </div>
 
-      <section className="popup" data-popup="video">
+      <section className={`popup ${popupIsOpen ? 'popup--open' : ''}`}>
         <div className="popup__area" />
         <div className="popup__body container">
           <div className="popup__content">
             <div className="popup__cross">
-              <div className="icon icon--cross-grey menu-close" />
+              <button
+                className="icon icon--cross-grey menu-close"
+                type="button"
+                onClick={onPopupToggle}
+              />
             </div>
 
             <video

@@ -20,9 +20,10 @@ type Props = {
     onTablet: boolean,
     onDesktop: boolean,
   },
+  onPopupToggle: () => void,
 };
 
-const Content: FC<Props> = ({ deviceType }) => {
+const Content: FC<Props> = ({ deviceType, onPopupToggle }) => {
   return (
     <main className="main">
       <section className="page__section first-screen">
@@ -201,7 +202,7 @@ const Content: FC<Props> = ({ deviceType }) => {
             className="video-section__play-button"
             data-requred-video="about-video"
           >
-            <div className=" icon icon--play-button" />
+            <button className=" icon icon--play-button" type="button" onClick={onPopupToggle} />
           </div>
         </div>
       </section>

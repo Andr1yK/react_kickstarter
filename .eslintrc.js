@@ -8,7 +8,7 @@ module.exports = {
   // extends: ['@mate-academy/eslint-config-react', 'plugin:cypress/recommended'],
   rules: {
     'object-curly-newline': [
-      'warn',
+      'off',
     ],
   },
 };
