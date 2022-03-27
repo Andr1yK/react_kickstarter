@@ -1,0 +1,84 @@
+[
+  {
+    "id": 1,
+    "title": "Sound & Music",
+    "features": [
+      {
+        "id": 1,
+        "text": "Feel-in-chest Base Power"
+      },
+      {
+        "id": 2,
+        "text": "Lossless Digital Audio Transmission"
+      },
+      {
+        "id": 3,
+        "text": "Easy & Stable Stereo Pairing"
+      },
+      {
+        "id": 4,
+        "text":  "Crisp and Clear High Frequency Sound"
+      },
+      {
+        "id": 5,
+        "text": "Streams from Cloud Music and Local Library"
+      },
+      {
+        "id": 6,
+        "text":  "Auto Music Playback from Last Song Stopped"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Connectivity",
+    "features": [
+      {
+        "id": 1,
+        "text": "Hands Free Wireless Audio"
+      },
+      {
+        "id": 2,
+        "text": "Bluetooth 4.0 LE"
+      },
+      {
+        "id": 3,
+        "text": "Wi-Fi 2.4 GHz (802.11 b/g/n)"
+      },
+      {
+        "id": 4,
+        "text":  "Smart Multiroom System Set Up"
+      },
+      {
+        "id": 5,
+        "text": "Party Mode with 6.0 Units and above"
+      },
+      {
+        "id": 6,
+        "text":  "Powerful MESHNET Multi Speaker Network"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "App Features",
+    "features": [
+      {
+        "id": 1,
+        "text":  "Customize Music Schedule"
+      },
+      {
+        "id": 2,
+        "text": "Wake Up with Favorite Songs"
+      },
+      {
+        "id": 3,
+        "text": "Home Detection Auto Wake Up"
+      },
+      {
+        "id": 4,
+        "text":  "Color Wheel & Saturation Change"
+      }
+    ]
+  }
+]
