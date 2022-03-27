@@ -23,8 +23,9 @@ function throttle(f: (...args: unknown[]) => unknown, delay: number) {
       f(...args);
       isRun = true;
 
-      // eslint-disable-next-line no-return-assign
-      setTimeout(() => (isRun = false), delay);
+      setTimeout(() => {
+        isRun = false;
+      }, delay);
     }
 
     clearTimeout(timerId);

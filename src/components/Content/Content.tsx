@@ -99,8 +99,7 @@ const Content: FC<Props> = ({ deviceType, onPopupToggle }) => {
 
       <section
         id="specs"
-        data-sect-name="specs-mob"
-        className="page__section benefits"
+        className="page__section benefits page__section--benefits"
       >
         <Container>
           <div className="benefits__content grid grid--tablet">
@@ -213,7 +212,7 @@ const Content: FC<Props> = ({ deviceType, onPopupToggle }) => {
         className="page__section about"
       >
         <Container>
-          <div className="about__content1">
+          <div className="about__content">
             <div className="about__content grid grid--mobile-flex">
               <div
                 className="

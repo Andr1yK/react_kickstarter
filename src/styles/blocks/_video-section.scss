@@ -1,6 +1,4 @@
 .video-section {
-  $ROOT: &;
-
   position: relative;
 
   pointer-events: none;
@@ -60,9 +58,5 @@
     @include onDesktop {
       width: MIN(20%, 350px); //css min()
     }
-  }
-
-  &__video {
-    display: none;
   }
 }
