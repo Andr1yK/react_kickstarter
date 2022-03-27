@@ -11,10 +11,29 @@ import { calipers,
   sun,
   technology,
   wifi } from '../../images';
+
 import ContactUs from '../ContactUs/ContactUs';
 
 import Container from '../Container/Container';
 import NavList from '../NavList/NavList';
+
+import featuresList from '../../api/features.json';
+import Carousel from '../Carousel/Carousel';
+
+const gridPosFeatures = [
+  {
+    tablet: 'grid__item--t--4-8',
+    desktop: 'grid__item--d--6-10',
+  },
+  {
+    tablet: 'grid__item--t--1-5',
+    desktop: 'grid__item--d--2-6',
+  },
+  {
+    tablet: 'grid__item--t--3-7',
+    desktop: 'grid__item--d--4-8',
+  },
+];
 
 type Props = {
   deviceType: {
@@ -194,7 +213,6 @@ const Content: FC<Props> = ({ deviceType, onPopupToggle }) => {
 
       <section
         id="our-story"
-        data-sect-name="our-story-mob"
         className="page__section video-section"
       >
         <div className="video-section__content">
@@ -209,7 +227,6 @@ const Content: FC<Props> = ({ deviceType, onPopupToggle }) => {
 
       <section
         id="about-us"
-        data-sect-name="about-us-mob"
         className="page__section about"
       >
         <Container>
@@ -285,7 +302,6 @@ const Content: FC<Props> = ({ deviceType, onPopupToggle }) => {
 
       <section
         id="technology"
-        data-sect-name="technology-mob"
         className="page__section technology"
       >
         <Container>
@@ -335,129 +351,55 @@ const Content: FC<Props> = ({ deviceType, onPopupToggle }) => {
 
       <section
         id="features"
-        data-sect-name="features-mob"
         className="page__section features"
       >
         <Container>
           <div className="features__content">
             <h2 className="features__title">features</h2>
-            <div className="features__slider slider">
-              <ul className="features__items slider__items grid grid--tablet">
-                <li
-                  className="
-                    features__item
-                    slider__item
-                    grid__item--t--4-8
-                    grid__item--d--6-10
-                  "
-                >
-                  <h4 className="features__item-title">Sound & Music</h4>
-                  <ul className="features__list">
-                    <li className="features__list-item">
-                      Feel-in-chest Base Power
-                    </li>
-                    <li className="features__list-item">
-                      Lossless Digital Audio Transmission
-                    </li>
-                    <li className="features__list-item">
-                      Easy & Stable Stereo Pairing
-                    </li>
-                    <li className="features__list-item">
-                      Crisp and Clear High Frequency Sound
-                    </li>
-                    <li className="features__list-item">
-                      Streams from Cloud Music and Local Library
-                    </li>
-                    <li className="features__list-item">
-                      Auto Music Playback from Last Song Stopped
-                    </li>
-                  </ul>
-                </li>
 
-                <li
-                  className="
-                    features__item
-                    slider__item
-                    grid__item--t--1-5
-                    grid__item--d--2-6
-                  "
-                >
-                  <h4 className="features__item-title">Connectivity</h4>
-                  <ul className="features__list">
-                    <li className="features__list-item">
-                      Hands Free Wireless Audio
-                    </li>
-                    <li className="features__list-item">Bluetooth 4.0 LE</li>
-                    <li className="features__list-item">
-                      Wi-Fi 2.4 GHz (802.11 b/g/n)
-                    </li>
-                    <li className="features__list-item">
-                      Smart Multiroom System Set Up
-                    </li>
-                    <li className="features__list-item">
-                      Party Mode with 6.0 Units and above
-                    </li>
-                    <li className="features__list-item">
-                      Powerful MESHNET Multi Speaker Network
-                    </li>
-                  </ul>
-                </li>
-
-                <li
-                  className="
-                    features__item
-                    slider__item
-                    grid__item--t--3-7
-                    grid__item--d--4-8
-                  "
-                >
-                  <h4 className="features__item-title">App Features</h4>
-                  <ul className="features__list">
-                    <li className="features__list-item">
-                      Customize Music Schedule
-                    </li>
-                    <li className="features__list-item">
-                      Wake Up with Favorite Songs
-                    </li>
-                    <li className="features__list-item">
-                      Home Detection Auto Wake Up
-                    </li>
-                    <li className="features__list-item">
-                      Color Wheel & Saturation Change
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-              <div className="slider__control">
-                <div className="slider__buttons">
-                  <button
-                    type="button"
-                    disabled
-                    className="slider__prev-button"
-                  />
-                  <button type="button" className="slider__next-button" />
-                </div>
-                <div className="slider__page-num">
-                  <span className="slider__page-current">01</span>
-                  {' / '}
-                  <span className="slider__page-last">03</span>
-                </div>
-              </div>
-            </div>
-
-            <div
-              className="
-                features__image-container
-                grid__item--d--1-12
-                grid__item--t--2-8
-              "
+            <Carousel
+              length={3}
+              itemWidth={243}
+              animationDuration={300}
+              deviceType={deviceType}
             >
-              <img
-                src={featuresImage}
-                alt="crazybaby speaker"
-                className="features__image"
-              />
-            </div>
+              <>
+                {featuresList.map((item, index) => (
+                  <li
+                    key={item.id}
+                    className={`
+                      features__item
+                      slider__item
+                      ${gridPosFeatures[index].tablet}
+                      ${gridPosFeatures[index].desktop}
+                    `}
+                  >
+                    <h4 className="features__item-title">{item.title}</h4>
+                    <ul className="features__list">
+                      {item.features.map((feature) => (
+                        <li key={feature.id} className="features__list-item">
+                          {feature.text}
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                ))}
+              </>
+            </Carousel>
+          </div>
+
+          <div
+            className="
+              features__image-container
+              grid__item--d--1-12
+              grid__item--t--2-8
+            "
+          >
+            <img
+              src={featuresImage}
+              alt="crazybaby speaker"
+              className="features__image"
+            />
           </div>
         </Container>
       </section>
