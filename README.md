@@ -1,6 +1,6 @@
 # Kickstarter CrazyBaby
 
-- [DEMO LINK](https://andr1yk.github.io/layout-react_kickstarter/)
+- [DEMO LINK](https://andr1yk.github.io/react_kickstarter/)
 - [Figma design](https://www.figma.com/file/ahRSbpFZaxYOmGvw0v9PDf/kickstarter-crazybaby)
 - [Version without React](https://github.com/Andr1yK/layout-kickstarter)
 
