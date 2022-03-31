@@ -2,7 +2,7 @@ import { FC, memo } from 'react';
 
 import './LangSwicher.scss';
 
-import languages from '../../api/languages.json';
+const languages = ['en', 'ua'];
 
 type Props = {
   className?: string;

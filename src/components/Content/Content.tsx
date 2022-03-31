@@ -1,6 +1,6 @@
 /* eslint-disable no-return-assign */
 /* eslint-disable jsx-a11y/control-has-associated-label */
-import { FC, memo } from 'react';
+import { FC, Key, memo, ReactChild, ReactFragment, ReactPortal } from 'react';
 
 import { calipers,
   design,
@@ -17,8 +17,9 @@ import ContactUs from '../ContactUs/ContactUs';
 import Container from '../Container/Container';
 import NavList from '../NavList/NavList';
 
-import featuresList from '../../api/features.json';
 import Carousel from '../Carousel/Carousel';
+import { Sections } from '../../types/Sections';
+import { FeatureBlock } from '../../types/Features';
 
 const gridPosFeatures = [
   {
@@ -36,6 +37,8 @@ const gridPosFeatures = [
 ];
 
 type Props = {
+  features: FeatureBlock[]
+  sections: Sections,
   deviceType: {
     onTablet: boolean,
     onDesktop: boolean,
@@ -43,7 +46,9 @@ type Props = {
   onPopupToggle: () => void,
 };
 
-const Content: FC<Props> = ({ deviceType, onPopupToggle }) => {
+const Content: FC<Props> = ({
+  deviceType, onPopupToggle, sections, features,
+}) => {
   return (
     <main className="main">
       <section className="page__section first-screen">
@@ -112,7 +117,7 @@ const Content: FC<Props> = ({ deviceType, onPopupToggle }) => {
       {deviceType.onDesktop && (
         <section className="navigation page__section page__section--nav ">
           <Container>
-            <NavList blockName="navigation" />
+            <NavList sections={sections} blockName="navigation" />
           </Container>
         </section>
       )}
@@ -349,60 +354,65 @@ const Content: FC<Props> = ({ deviceType, onPopupToggle }) => {
         </Container>
       </section>
 
-      <section
-        id="features"
-        className="page__section features"
-      >
-        <Container>
-          <div className="features__content">
-            <h2 className="features__title">features</h2>
+      {!!features.length && (
+        <section
+          id="features"
+          className="page__section features"
+        >
+          <Container>
+            <div className="features__content">
+              <h2 className="features__title">features</h2>
 
-            <Carousel
-              length={3}
-              itemWidth={243}
-              animationDuration={300}
-              deviceType={deviceType}
+              <Carousel
+                length={3}
+                itemWidth={243}
+                animationDuration={300}
+                deviceType={deviceType}
+              >
+                <>
+                  {features.map((item, index) => (
+                    <li
+                      key={item.id}
+                      className={`
+                        features__item
+                        slider__item
+                        ${gridPosFeatures[index].tablet}
+                        ${gridPosFeatures[index].desktop}
+                      `}
+                    >
+                      <h4 className="features__item-title">{item.title}</h4>
+                      <ul className="features__list">
+                        {item.features.map((feature: {
+                          id: Key | null | undefined; text: boolean | ReactChild | ReactFragment
+                          | ReactPortal | null | undefined;
+                        }) => (
+                          <li key={feature.id} className="features__list-item">
+                            {feature.text}
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
+                  ))}
+                </>
+              </Carousel>
+            </div>
+
+            <div
+              className="
+                features__image-container
+                grid__item--d--1-12
+                grid__item--t--2-8
+              "
             >
-              <>
-                {featuresList.map((item, index) => (
-                  <li
-                    key={item.id}
-                    className={`
-                      features__item
-                      slider__item
-                      ${gridPosFeatures[index].tablet}
-                      ${gridPosFeatures[index].desktop}
-                    `}
-                  >
-                    <h4 className="features__item-title">{item.title}</h4>
-                    <ul className="features__list">
-                      {item.features.map((feature) => (
-                        <li key={feature.id} className="features__list-item">
-                          {feature.text}
-                        </li>
-                      ))}
-                    </ul>
-                  </li>
-                ))}
-              </>
-            </Carousel>
-          </div>
-
-          <div
-            className="
-              features__image-container
-              grid__item--d--1-12
-              grid__item--t--2-8
-            "
-          >
-            <img
-              src={featuresImage}
-              alt="crazybaby speaker"
-              className="features__image"
-            />
-          </div>
-        </Container>
-      </section>
+              <img
+                src={featuresImage}
+                alt="crazybaby speaker"
+                className="features__image"
+              />
+            </div>
+          </Container>
+        </section>
+      )}
 
       <ContactUs />
     </main>

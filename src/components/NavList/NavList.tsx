@@ -1,13 +1,13 @@
 import { FC, memo } from 'react';
-
-import sections from '../../api/sections.json';
+import { Sections } from '../../types/Sections';
 
 type Props = {
-  blockName: string,
-  onLinkClick?: () => void,
+  sections: Sections;
+  blockName: string;
+  onLinkClick?: () => void;
 };
 
-const NavList: FC<Props> = ({ blockName, onLinkClick }) => {
+const NavList: FC<Props> = ({ blockName, onLinkClick, sections }) => {
   return (
     <ul className={`${blockName}__list`}>
       {Object.entries(sections).map(([key, value]) => (

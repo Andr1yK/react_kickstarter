@@ -3,6 +3,7 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
 
 import { FC, memo } from 'react';
+import { Sections } from '../../types/Sections';
 import Container from '../Container/Container';
 import LangSwicher from '../LangSwicher/LangSwicher';
 import Logo from '../Logo/Logo';
@@ -11,6 +12,7 @@ import NavList from '../NavList/NavList';
 import './MobileNav.scss';
 
 type Props = {
+  sections: Sections;
   isOpen: boolean;
   onMenuToggle: () => void;
   lang: string;
@@ -19,7 +21,7 @@ type Props = {
 
 const MobileNav: FC<Props> = memo(
   ({
-    isOpen, onMenuToggle, lang, onSelectLang,
+    isOpen, onMenuToggle, lang, onSelectLang, sections,
   }) => {
     return (
       <nav className={`menu ${isOpen ? 'menu--open' : ''}`} id="menu">
@@ -37,7 +39,11 @@ const MobileNav: FC<Props> = memo(
               </div>
             </div>
 
-            <NavList blockName="menu" onLinkClick={onMenuToggle} />
+            <NavList
+              sections={sections}
+              blockName="menu"
+              onLinkClick={onMenuToggle}
+            />
 
             <LangSwicher
               className="menu__lang-swicher"

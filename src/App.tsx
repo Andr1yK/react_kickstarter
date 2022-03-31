@@ -9,10 +9,13 @@ import { FC,
   useEffect } from 'react';
 
 import './App.scss';
+import { getDataFromServer } from './api/getDataFromServer';
 import Content from './components/Content/Content';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import MobileNav from './components/MobileNav/MobileNav';
+import { Sections } from './types/Sections';
+import { FeatureBlock } from './types/Features';
 
 function throttle(f: (...args: unknown[]) => unknown, delay: number) {
   let isRun = false;
@@ -38,12 +41,23 @@ const App: FC = () => {
   const [lang, setLang] = useState('en');
   const [popupIsOpen, setPopupIsOpen] = useState(false);
 
+  const [sections, setSections] = useState((): Sections => ({}));
+  const [features, setFeatures] = useState((): FeatureBlock[] => []);
+
   const [scrollPosition, setScrollPosition] = useState(0);
 
   const [deviceType] = useState({
     onTablet: window.matchMedia('(min-width: 768px)').matches,
     onDesktop: window.matchMedia('(min-width: 1024px)').matches,
   });
+
+  useEffect(() => {
+    getDataFromServer('/sections.json')
+      .then((data) => setSections(data));
+
+    getDataFromServer('/features.json')
+      .then((data) => setFeatures(data));
+  }, []);
 
   useEffect(() => {
     if (menuIsOpen || popupIsOpen) {
@@ -92,6 +106,7 @@ const App: FC = () => {
 
       {!deviceType.onDesktop && (
         <MobileNav
+          sections={sections}
           isOpen={menuIsOpen}
           onMenuToggle={onMenuToggle}
           lang={lang}
@@ -99,7 +114,12 @@ const App: FC = () => {
         />
       )}
 
-      <Content deviceType={deviceType} onPopupToggle={onPopupToggle} />
+      <Content
+        features={features}
+        sections={sections}
+        deviceType={deviceType}
+        onPopupToggle={onPopupToggle}
+      />
 
       <Footer className="page__footer" />
 
