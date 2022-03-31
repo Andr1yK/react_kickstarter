@@ -13,7 +13,7 @@
     "update": "mate-scripts update",
     "postinstall": "npm run update",
     "predeploy": "npm run build",
-    "deploy": "npm run lint && gh-pages -d build"
+    "deploy": "gh-pages -d build"
   },
   "repository": {
     "type": "git",
@@ -54,11 +54,7 @@
     "stylelint": "^13.13.1"
   },
   "eslintConfig": {
-    "extends": "react-app",
-    "rules": {
-      "no-console": "warn",
-      "object-curly-newline": "off"
-    }
+    "extends": "react-app"
   },
   "lint-staged": {
     "*.css": [
