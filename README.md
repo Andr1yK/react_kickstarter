@@ -8,6 +8,8 @@
 
 Kickstarter CrazyBaby is a site where you can get acquainted with the products of the same name and pre-order
 
+This project, unlike its [simpler version](https://github.com/Andr1yK/layout-kickstarter), I use React, FetchAPI, Typescript in order to make this site as user-friendly as possible, as well as flexible for further development.
+
 ## Technologies
 - Adaptive layout
 - HTML5
