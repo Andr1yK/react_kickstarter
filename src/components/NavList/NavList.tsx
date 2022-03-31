@@ -1,13 +1,14 @@
-import { FC, memo } from 'react';
-import { Sections } from '../../types/Sections';
+import { FC, memo, useContext } from 'react';
+import { StateContext } from '../../store';
 
 type Props = {
-  sections: Sections;
   blockName: string;
   onLinkClick?: () => void;
 };
 
-const NavList: FC<Props> = ({ blockName, onLinkClick, sections }) => {
+const NavList: FC<Props> = ({ blockName, onLinkClick }) => {
+  const { sections } = useContext(StateContext);
+
   return (
     <ul className={`${blockName}__list`}>
       {Object.entries(sections).map(([key, value]) => (

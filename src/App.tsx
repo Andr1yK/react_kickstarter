@@ -6,7 +6,8 @@
 import { FC,
   useCallback,
   useState,
-  useEffect } from 'react';
+  useEffect,
+  useContext } from 'react';
 
 import './App.scss';
 import { getDataFromServer } from './api/getDataFromServer';
@@ -14,16 +15,18 @@ import Content from './components/Content/Content';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import MobileNav from './components/MobileNav/MobileNav';
-import { Sections } from './types/Sections';
-import { FeatureBlock } from './types/Features';
 
 import { throttle } from './helpers/throttle';
+import { FeatureBlock } from './types';
+import { DispatchContext } from './store';
+import { setSectionsList } from './actions';
 
 const App: FC = () => {
+  const dispatch = useContext(DispatchContext);
+
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [popupIsOpen, setPopupIsOpen] = useState(false);
 
-  const [sections, setSections] = useState((): Sections => ({}));
   const [features, setFeatures] = useState((): FeatureBlock[] => []);
 
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -35,7 +38,7 @@ const App: FC = () => {
 
   useEffect(() => {
     getDataFromServer('/sections.json')
-      .then((data) => setSections(data));
+      .then((data) => dispatch(setSectionsList(data)));
 
     getDataFromServer('/features.json')
       .then((data) => setFeatures(data));
@@ -82,7 +85,6 @@ const App: FC = () => {
 
       {!deviceType.onDesktop && (
         <MobileNav
-          sections={sections}
           isOpen={menuIsOpen}
           onMenuToggle={onMenuToggle}
         />
@@ -90,7 +92,6 @@ const App: FC = () => {
 
       <Content
         features={features}
-        sections={sections}
         deviceType={deviceType}
         onPopupToggle={onPopupToggle}
       />

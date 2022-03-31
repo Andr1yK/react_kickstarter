@@ -4,6 +4,7 @@ import { Store } from '../types/Store';
 
 const store: Store = {
   lang: 'en',
+  sections: {},
 };
 
 const reducer = (state: Store, action: Action) => {
@@ -12,6 +13,12 @@ const reducer = (state: Store, action: Action) => {
       return {
         ...state,
         lang: action.payload,
+      };
+
+    case 'SET_SECTIONS_LIST':
+      return {
+        ...state,
+        sections: action.payload,
       };
 
     default:

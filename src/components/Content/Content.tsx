@@ -18,7 +18,6 @@ import Container from '../Container/Container';
 import NavList from '../NavList/NavList';
 
 import Carousel from '../Carousel/Carousel';
-import { Sections } from '../../types/Sections';
 import { FeatureBlock } from '../../types/Features';
 
 const gridPosFeatures = [
@@ -38,7 +37,6 @@ const gridPosFeatures = [
 
 type Props = {
   features: FeatureBlock[]
-  sections: Sections,
   deviceType: {
     onTablet: boolean,
     onDesktop: boolean,
@@ -46,9 +44,7 @@ type Props = {
   onPopupToggle: () => void,
 };
 
-const Content: FC<Props> = ({
-  deviceType, onPopupToggle, sections, features,
-}) => {
+const Content: FC<Props> = ({ deviceType, onPopupToggle, features }) => {
   return (
     <main className="main">
       <section className="page__section first-screen">
@@ -117,7 +113,7 @@ const Content: FC<Props> = ({
       {deviceType.onDesktop && (
         <section className="navigation page__section page__section--nav ">
           <Container>
-            <NavList sections={sections} blockName="navigation" />
+            <NavList blockName="navigation" />
           </Container>
         </section>
       )}
