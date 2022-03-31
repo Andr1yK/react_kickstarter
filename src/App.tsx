@@ -17,28 +17,10 @@ import MobileNav from './components/MobileNav/MobileNav';
 import { Sections } from './types/Sections';
 import { FeatureBlock } from './types/Features';
 
-function throttle(f: (...args: unknown[]) => unknown, delay: number) {
-  let isRun = false;
-  let timerId: NodeJS.Timeout;
-
-  return function wrapper(...args: unknown[]) {
-    if (!isRun) {
-      f(...args);
-      isRun = true;
-
-      setTimeout(() => {
-        isRun = false;
-      }, delay);
-    }
-
-    clearTimeout(timerId);
-    timerId = setTimeout(() => f(...args), delay);
-  };
-}
+import { throttle } from './helpers/throttle';
 
 const App: FC = () => {
   const [menuIsOpen, setMenuIsOpen] = useState(false);
-  const [lang, setLang] = useState('en');
   const [popupIsOpen, setPopupIsOpen] = useState(false);
 
   const [sections, setSections] = useState((): Sections => ({}));
@@ -83,10 +65,6 @@ const App: FC = () => {
     setMenuIsOpen(!menuIsOpen);
   }, [menuIsOpen]);
 
-  const onSelectLang = useCallback((selectedLang: string) => {
-    setLang(selectedLang);
-  }, []);
-
   const onPopupToggle = useCallback(() => {
     setPopupIsOpen(!popupIsOpen);
   }, [popupIsOpen]);
@@ -100,8 +78,6 @@ const App: FC = () => {
       <Header
         className="page__header"
         onMenuToggle={onMenuToggle}
-        lang={lang}
-        onSelectLang={onSelectLang}
       />
 
       {!deviceType.onDesktop && (
@@ -109,8 +85,6 @@ const App: FC = () => {
           sections={sections}
           isOpen={menuIsOpen}
           onMenuToggle={onMenuToggle}
-          lang={lang}
-          onSelectLang={onSelectLang}
         />
       )}
 

@@ -8,13 +8,9 @@ import './Header.scss';
 type Props = {
   className?: string;
   onMenuToggle: () => void;
-  lang: string;
-  onSelectLang: (lang: string) => void;
 };
 
-const Header: FC<Props> = ({
-  className, onMenuToggle, lang, onSelectLang,
-}) => {
+const Header: FC<Props> = ({ className, onMenuToggle }) => {
   return (
     <header className={`header ${className}`}>
       <Container>
@@ -36,7 +32,7 @@ const Header: FC<Props> = ({
               SPECS
             </a>
 
-            <LangSwicher currentLang={lang} onSelectLang={onSelectLang} />
+            <LangSwicher />
 
             <a href="cart.html" className="header__buy button button--buy">
               Buy
