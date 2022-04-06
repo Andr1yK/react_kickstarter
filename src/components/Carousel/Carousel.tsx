@@ -1,5 +1,11 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
-import { FC, ReactChild, useEffect, useState, memo } from 'react';
+import {
+  FC,
+  ReactChild,
+  useEffect,
+  useState,
+  memo,
+} from 'react';
 import './Carousel.scss';
 
 type Props = {

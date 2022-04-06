@@ -10,7 +10,7 @@ type Props = {
   className?: string;
 };
 
-const LangSwicher: FC<Props> = memo(({ className }) => {
+const LangSwicher: FC<Props> = ({ className }) => {
   const dispatch = useDispatch();
   const currentLang = useSelector(state => state.lang);
 
@@ -40,10 +40,10 @@ const LangSwicher: FC<Props> = memo(({ className }) => {
       ))}
     </div>
   );
-});
+};
 
 LangSwicher.defaultProps = {
   className: '',
 };
 
-export default LangSwicher;
+export default memo(LangSwicher);

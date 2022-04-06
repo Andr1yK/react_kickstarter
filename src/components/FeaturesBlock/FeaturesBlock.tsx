@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { useSelector } from '../../hooks';
 import { featuresImage } from '../../images';
 
@@ -90,4 +90,4 @@ const FeaturesBlock: FC<Props> = ({ deviceType }) => {
   );
 };
 
-export default FeaturesBlock;
+export default memo(FeaturesBlock);
