@@ -1,9 +1,9 @@
 import { FC, memo } from 'react';
-import { useSelector } from '../../hooks';
-import { featuresImage } from '../../images';
+import { useSelector } from '../../../hooks';
+import { featuresImage } from '../../../images';
 
-import Carousel from '../Carousel/Carousel';
-import Container from '../Container/Container';
+import Carousel from '../../Carousel/Carousel';
+import Container from '../../Container/Container';
 
 import './FeaturesBlock.scss';
 
@@ -29,7 +29,7 @@ type Props = {
   },
 };
 
-const FeaturesBlock: FC<Props> = ({ deviceType }) => {
+export const Features: FC<Props> = memo(({ deviceType }) => {
   const features = useSelector(state => state.features);
 
   return (
@@ -88,6 +88,4 @@ const FeaturesBlock: FC<Props> = ({ deviceType }) => {
       </Container>
     </section>
   );
-};
-
-export default memo(FeaturesBlock);
+});

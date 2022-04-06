@@ -1,3 +1,5 @@
+@import "../../../styles/utils";
+
 .technology {
   overflow: hidden;
 
@@ -48,7 +50,7 @@
       display: block;
       width: 100%;
       height: 60%;
-      background: url(../../images/quotes.svg) center top / contain no-repeat;
+      background: url(../../../images/quotes.svg) center top / contain no-repeat;
 
       @include onTablet {
         transform: translateY(-50%);
