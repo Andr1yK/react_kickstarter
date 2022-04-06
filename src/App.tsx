@@ -19,13 +19,13 @@ import MobileNav from './components/MobileNav/MobileNav';
 
 import { throttle } from './helpers/throttle';
 import { actionSetFeatures, actionSetSectionsList } from './actions';
-import { useDispatch } from './hooks';
+import { useDispatch, useToggle } from './hooks';
 
 const App: FC = () => {
   const dispatch = useDispatch();
 
-  const [menuIsOpen, setMenuIsOpen] = useState(false);
-  const [popupIsOpen, setPopupIsOpen] = useState(false);
+  const [isMenuOpen, toggleMenu] = useToggle();
+  const [isPopupOpen, togglePopup] = useToggle();
 
   const [scrollPosition, setScrollPosition] = useState(0);
 
@@ -43,12 +43,12 @@ const App: FC = () => {
   }, []);
 
   useEffect(() => {
-    if (menuIsOpen || popupIsOpen) {
+    if (isMenuOpen || isPopupOpen) {
       document.body.classList.add('page__body--with-menu');
     } else {
       document.body.classList.remove('page__body--with-menu');
     }
-  }, [menuIsOpen, popupIsOpen]);
+  }, [isMenuOpen, isPopupOpen]);
 
   useEffect(() => {
     const handleScroll = throttle(() => setScrollPosition(window.scrollY), 250);
@@ -62,14 +62,6 @@ const App: FC = () => {
     };
   }, []);
 
-  const onMenuToggle = useCallback(() => {
-    setMenuIsOpen(!menuIsOpen);
-  }, [menuIsOpen]);
-
-  const onPopupToggle = useCallback(() => {
-    setPopupIsOpen((state) => !state);
-  }, [popupIsOpen]);
-
   const scrollToTop = useCallback(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -78,19 +70,19 @@ const App: FC = () => {
     <>
       <Header
         className="page__header"
-        onMenuToggle={onMenuToggle}
+        onMenuToggle={toggleMenu}
       />
 
       {!deviceType.onDesktop && (
         <MobileNav
-          isOpen={menuIsOpen}
-          onMenuToggle={onMenuToggle}
+          isOpen={isMenuOpen}
+          onMenuToggle={toggleMenu}
         />
       )}
 
       <Content
         deviceType={deviceType}
-        onPopupToggle={onPopupToggle}
+        onPopupToggle={togglePopup}
       />
 
       <Footer className="page__footer" />
@@ -112,7 +104,7 @@ const App: FC = () => {
         </div>
       </div>
 
-      <section className={`popup ${popupIsOpen ? 'popup--open' : ''}`}>
+      <section className={`popup ${isPopupOpen ? 'popup--open' : ''}`}>
         <div className="popup__area" />
         <div className="popup__body container">
           <div className="popup__content">
@@ -120,7 +112,7 @@ const App: FC = () => {
               <button
                 className="icon icon--cross-grey menu-close"
                 type="button"
-                onClick={onPopupToggle}
+                onClick={togglePopup}
               />
             </div>
 
