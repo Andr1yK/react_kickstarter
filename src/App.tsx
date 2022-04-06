@@ -1,14 +1,7 @@
 /* eslint-disable jsx-a11y/media-has-caption */
-/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/control-has-associated-label */
-/* eslint-disable jsx-a11y/anchor-has-content */
 
-import {
-  FC,
-  useCallback,
-  useState,
-  useEffect,
-} from 'react';
+import { FC, useState, useEffect } from 'react';
 
 import './App.scss';
 import { getDataFromServer } from './api/getDataFromServer';
@@ -17,17 +10,15 @@ import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import MobileNav from './components/MobileNav/MobileNav';
 
-import { throttle } from './helpers/throttle';
 import { actionSetFeatures, actionSetSectionsList } from './actions';
 import { useDispatch, useToggle } from './hooks';
+import GoTopButton from './components/GoTopButton/GoTopButton';
 
 const App: FC = () => {
   const dispatch = useDispatch();
 
   const [isMenuOpen, toggleMenu] = useToggle();
   const [isPopupOpen, togglePopup] = useToggle();
-
-  const [scrollPosition, setScrollPosition] = useState(0);
 
   const [deviceType] = useState({
     onTablet: window.matchMedia('(min-width: 768px)').matches,
@@ -50,22 +41,6 @@ const App: FC = () => {
     }
   }, [isMenuOpen, isPopupOpen]);
 
-  useEffect(() => {
-    const handleScroll = throttle(() => setScrollPosition(window.scrollY), 250);
-
-    window.addEventListener('scroll', handleScroll, {
-      passive: true,
-    });
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
-  const scrollToTop = useCallback(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <>
       <Header
@@ -87,22 +62,7 @@ const App: FC = () => {
 
       <Footer className="page__footer" />
 
-      <div
-        className={`go-top page__go-top container ${scrollPosition > 700 && 'go-top--visible'}`}
-      >
-        <div className="go-top__button">
-          <button
-            type="button"
-            onClick={scrollToTop}
-            className="
-          go-top__link
-          icon
-          icon--contain
-          icon--go-top
-          "
-          />
-        </div>
-      </div>
+      <GoTopButton />
 
       <section className={`popup ${isPopupOpen ? 'popup--open' : ''}`}>
         <div className="popup__area" />
