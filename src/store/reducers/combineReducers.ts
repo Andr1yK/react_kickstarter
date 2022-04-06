@@ -1,6 +1,6 @@
-import { Reducer } from '../types';
+import { Reducer } from '../../types';
 
-const combineReducers = (
+export const combineReducers = (
   reducers: { [key: string]: Reducer },
 ): Reducer => {
   return (state, action) => (
@@ -11,5 +11,3 @@ const combineReducers = (
       }), state)
   );
 };
-
-export default combineReducers;

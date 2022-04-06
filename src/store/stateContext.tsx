@@ -1,37 +1,30 @@
 import React, { FC, useReducer } from 'react';
-import { Action } from '../types/Action';
-import { Store } from '../types/Store';
+import { Action, Store } from '../types';
+import {
+  combineReducers,
+  featuresReducer,
+  langReducer,
+  sectionListReducer,
+} from './reducers';
 
 const store: Store = {
   lang: 'en',
   sections: {},
+  features: [],
 };
 
-const reducer = (state: Store, action: Action) => {
-  switch (action.type) {
-    case 'SET_LANG':
-      return {
-        ...state,
-        lang: action.payload,
-      };
-
-    case 'SET_SECTIONS_LIST':
-      return {
-        ...state,
-        sections: action.payload,
-      };
-
-    default:
-      return state;
-  }
-};
+const rootReducer = combineReducers({
+  langReducer,
+  sectionListReducer,
+  featuresReducer,
+});
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const DispatchContext = React.createContext((_action: Action) => {});
 export const StateContext = React.createContext(store);
 
 export const StateProvider: FC = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer as never, store as never);
+  const [state, dispatch] = useReducer(rootReducer, store);
 
   return (
     <DispatchContext.Provider value={dispatch}>

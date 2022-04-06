@@ -1,2 +1,3 @@
-export * from './setLangAction';
-export * from './setSectionsList';
+export * from './actionSetLang';
+export * from './actionSetSectionsList';
+export * from './actionSetFeatures';

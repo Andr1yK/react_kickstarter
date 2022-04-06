@@ -1,6 +1,6 @@
 import { Sections } from '../types';
 
-export const setSectionsList = (sections: Sections) => ({
+export const actionSetSectionsList = (sections: Sections) => ({
   type: 'SET_SECTIONS_LIST',
   payload: sections,
 });

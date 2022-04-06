@@ -3,11 +3,12 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable jsx-a11y/anchor-has-content */
 
-import { FC,
+import {
+  FC,
   useCallback,
   useState,
   useEffect,
-  useContext } from 'react';
+} from 'react';
 
 import './App.scss';
 import { getDataFromServer } from './api/getDataFromServer';
@@ -17,17 +18,14 @@ import Header from './components/Header/Header';
 import MobileNav from './components/MobileNav/MobileNav';
 
 import { throttle } from './helpers/throttle';
-import { FeatureBlock } from './types';
-import { DispatchContext } from './store';
-import { setSectionsList } from './actions';
+import { actionSetFeatures, actionSetSectionsList } from './actions';
+import { useDispatch } from './hooks';
 
 const App: FC = () => {
-  const dispatch = useContext(DispatchContext);
+  const dispatch = useDispatch();
 
   const [menuIsOpen, setMenuIsOpen] = useState(false);
   const [popupIsOpen, setPopupIsOpen] = useState(false);
-
-  const [features, setFeatures] = useState((): FeatureBlock[] => []);
 
   const [scrollPosition, setScrollPosition] = useState(0);
 
@@ -38,10 +36,10 @@ const App: FC = () => {
 
   useEffect(() => {
     getDataFromServer('/sections.json')
-      .then((data) => dispatch(setSectionsList(data)));
+      .then((data) => dispatch(actionSetSectionsList(data)));
 
     getDataFromServer('/features.json')
-      .then((data) => setFeatures(data));
+      .then((data) => dispatch(actionSetFeatures(data)));
   }, []);
 
   useEffect(() => {
@@ -91,7 +89,6 @@ const App: FC = () => {
       )}
 
       <Content
-        features={features}
         deviceType={deviceType}
         onPopupToggle={onPopupToggle}
       />

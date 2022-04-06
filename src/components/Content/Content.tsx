@@ -1,42 +1,30 @@
 /* eslint-disable no-return-assign */
 /* eslint-disable jsx-a11y/control-has-associated-label */
-import { FC, Key, memo, ReactChild, ReactFragment, ReactPortal } from 'react';
+import {
+  FC,
+  memo,
+} from 'react';
 
-import { calipers,
+import {
+  calipers,
   design,
-  featuresImage,
   headerImage,
   martin,
   speaker,
   sun,
   technology,
-  wifi } from '../../images';
+  wifi,
+} from '../../images';
 
 import ContactUs from '../ContactUs/ContactUs';
 
 import Container from '../Container/Container';
 import NavList from '../NavList/NavList';
 
-import Carousel from '../Carousel/Carousel';
-import { FeatureBlock } from '../../types/Features';
-
-const gridPosFeatures = [
-  {
-    tablet: 'grid__item--t--4-8',
-    desktop: 'grid__item--d--6-10',
-  },
-  {
-    tablet: 'grid__item--t--1-5',
-    desktop: 'grid__item--d--2-6',
-  },
-  {
-    tablet: 'grid__item--t--3-7',
-    desktop: 'grid__item--d--4-8',
-  },
-];
+import { useSelector } from '../../hooks';
+import FeaturesBlock from '../FeaturesBlock/FeaturesBlock';
 
 type Props = {
-  features: FeatureBlock[]
   deviceType: {
     onTablet: boolean,
     onDesktop: boolean,
@@ -44,7 +32,9 @@ type Props = {
   onPopupToggle: () => void,
 };
 
-const Content: FC<Props> = ({ deviceType, onPopupToggle, features }) => {
+const Content: FC<Props> = ({ deviceType, onPopupToggle }) => {
+  const featuresLength = useSelector(state => state.features.length);
+
   return (
     <main className="main">
       <section className="page__section first-screen">
@@ -350,65 +340,7 @@ const Content: FC<Props> = ({ deviceType, onPopupToggle, features }) => {
         </Container>
       </section>
 
-      {!!features.length && (
-        <section
-          id="features"
-          className="page__section features"
-        >
-          <Container>
-            <div className="features__content">
-              <h2 className="features__title">features</h2>
-
-              <Carousel
-                length={3}
-                itemWidth={243}
-                animationDuration={300}
-                deviceType={deviceType}
-              >
-                <>
-                  {features.map((item, index) => (
-                    <li
-                      key={item.id}
-                      className={`
-                        features__item
-                        slider__item
-                        ${gridPosFeatures[index].tablet}
-                        ${gridPosFeatures[index].desktop}
-                      `}
-                    >
-                      <h4 className="features__item-title">{item.title}</h4>
-                      <ul className="features__list">
-                        {item.features.map((feature: {
-                          id: Key | null | undefined; text: boolean | ReactChild | ReactFragment
-                          | ReactPortal | null | undefined;
-                        }) => (
-                          <li key={feature.id} className="features__list-item">
-                            {feature.text}
-                          </li>
-                        ))}
-                      </ul>
-                    </li>
-                  ))}
-                </>
-              </Carousel>
-            </div>
-
-            <div
-              className="
-                features__image-container
-                grid__item--d--1-12
-                grid__item--t--2-8
-              "
-            >
-              <img
-                src={featuresImage}
-                alt="crazybaby speaker"
-                className="features__image"
-              />
-            </div>
-          </Container>
-        </section>
-      )}
+      {!!featuresLength && <FeaturesBlock deviceType={deviceType} />}
 
       <ContactUs />
     </main>
