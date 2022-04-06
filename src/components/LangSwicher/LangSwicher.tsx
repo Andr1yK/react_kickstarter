@@ -1,6 +1,6 @@
-import { FC, memo, useContext } from 'react';
-import { setLangAction } from '../../actions/setLangAction';
-import { DispatchContext, StateContext } from '../../store';
+import { FC, memo } from 'react';
+import { actionSetLang } from '../../actions/actionSetLang';
+import { useDispatch, useSelector } from '../../hooks';
 
 import './LangSwicher.scss';
 
@@ -10,39 +10,37 @@ type Props = {
   className?: string;
 };
 
-const LangSwicher: FC<Props> = memo(
-  ({ className }) => {
-    const dispatch = useContext(DispatchContext);
-    const { lang: currentLang } = useContext(StateContext);
+const LangSwicher: FC<Props> = memo(({ className }) => {
+  const dispatch = useDispatch();
+  const currentLang = useSelector(state => state.lang);
 
-    const setLanguage = (language: string) => () => {
-      dispatch(setLangAction(language));
-    };
+  const setLanguage = (language: string) => () => {
+    dispatch(actionSetLang(language));
+  };
 
-    return (
-      <div className={`lang-swicher ${className}`}>
-        {languages.map((language) => (
-          <label
-            key={language}
-            className={`lang-swicher__label ${
-              currentLang === language && 'lang-swicher__label--active'}`}
-            htmlFor={`lang-swicher-${language}`}
-          >
-            <input
-              className="lang-swicher__input"
-              type="button"
-              id={`lang-swicher-${language}`}
-              onClick={setLanguage(language)}
-            />
-            <span className="lang-swicher__text">
-              {language.toUpperCase()}
-            </span>
-          </label>
-        ))}
-      </div>
-    );
-  },
-);
+  return (
+    <div className={`lang-swicher ${className}`}>
+      {languages.map((language) => (
+        <label
+          key={language}
+          className={`lang-swicher__label ${
+            currentLang === language && 'lang-swicher__label--active'}`}
+          htmlFor={`lang-swicher-${language}`}
+        >
+          <input
+            className="lang-swicher__input"
+            type="button"
+            id={`lang-swicher-${language}`}
+            onClick={setLanguage(language)}
+          />
+          <span className="lang-swicher__text">
+            {language}
+          </span>
+        </label>
+      ))}
+    </div>
+  );
+});
 
 LangSwicher.defaultProps = {
   className: '',
