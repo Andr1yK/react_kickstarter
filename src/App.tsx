@@ -67,7 +67,7 @@ const App: FC = () => {
   }, [menuIsOpen]);
 
   const onPopupToggle = useCallback(() => {
-    setPopupIsOpen(!popupIsOpen);
+    setPopupIsOpen((state) => !state);
   }, [popupIsOpen]);
 
   const scrollToTop = useCallback(() => {

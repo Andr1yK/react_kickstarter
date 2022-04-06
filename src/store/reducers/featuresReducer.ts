@@ -1,4 +1,4 @@
-import { Reducer } from "../../types";
+import { Reducer } from '../../types';
 
 export const featuresReducer: Reducer = (state, action) => {
   switch (action.type) {
