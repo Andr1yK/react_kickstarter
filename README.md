@@ -27,6 +27,7 @@ This project, unlike its [simpler version](https://github.com/Andr1yK/layout-kic
 - Improve form verification
 - Send a successful purchase notification to your email
 - Use Redux
+- Add ukrainian translate for all text
 
 ## Local development
 

@@ -1,44 +1,24 @@
 /* eslint-disable jsx-a11y/media-has-caption */
-/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/control-has-associated-label */
-/* eslint-disable jsx-a11y/anchor-has-content */
 
-import { FC,
-  useCallback,
-  useState,
-  useEffect } from 'react';
+import { FC, useState, useEffect } from 'react';
 
 import './App.scss';
+import { getDataFromServer } from './api/getDataFromServer';
 import Content from './components/Content/Content';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import MobileNav from './components/MobileNav/MobileNav';
 
-function throttle(f: (...args: unknown[]) => unknown, delay: number) {
-  let isRun = false;
-  let timerId: NodeJS.Timeout;
-
-  return function wrapper(...args: unknown[]) {
-    if (!isRun) {
-      f(...args);
-      isRun = true;
-
-      setTimeout(() => {
-        isRun = false;
-      }, delay);
-    }
-
-    clearTimeout(timerId);
-    timerId = setTimeout(() => f(...args), delay);
-  };
-}
+import { useDispatch, useToggle } from './hooks';
+import GoTopButton from './components/GoTopButton/GoTopButton';
+import { actionSetSectionsList, actionSetFeatures } from './store/reducers';
 
 const App: FC = () => {
-  const [menuIsOpen, setMenuIsOpen] = useState(false);
-  const [lang, setLang] = useState('en');
-  const [popupIsOpen, setPopupIsOpen] = useState(false);
+  const dispatch = useDispatch();
 
-  const [scrollPosition, setScrollPosition] = useState(0);
+  const [isMenuOpen, toggleMenu] = useToggle();
+  const [isPopupOpen, togglePopup] = useToggle();
 
   const [deviceType] = useState({
     onTablet: window.matchMedia('(min-width: 768px)').matches,
@@ -46,81 +26,45 @@ const App: FC = () => {
   });
 
   useEffect(() => {
-    if (menuIsOpen || popupIsOpen) {
+    getDataFromServer('/sections.json')
+      .then((data) => dispatch(actionSetSectionsList(data)));
+
+    getDataFromServer('/features.json')
+      .then((data) => dispatch(actionSetFeatures(data)));
+  }, []);
+
+  useEffect(() => {
+    if (isMenuOpen || isPopupOpen) {
       document.body.classList.add('page__body--with-menu');
     } else {
       document.body.classList.remove('page__body--with-menu');
     }
-  }, [menuIsOpen, popupIsOpen]);
-
-  useEffect(() => {
-    const handleScroll = throttle(() => setScrollPosition(window.scrollY), 250);
-
-    window.addEventListener('scroll', handleScroll, {
-      passive: true,
-    });
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
-  const onMenuToggle = useCallback(() => {
-    setMenuIsOpen(!menuIsOpen);
-  }, [menuIsOpen]);
-
-  const onSelectLang = useCallback((selectedLang: string) => {
-    setLang(selectedLang);
-  }, []);
-
-  const onPopupToggle = useCallback(() => {
-    setPopupIsOpen(!popupIsOpen);
-  }, [popupIsOpen]);
-
-  const scrollToTop = useCallback(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  }, [isMenuOpen, isPopupOpen]);
 
   return (
     <>
       <Header
         className="page__header"
-        onMenuToggle={onMenuToggle}
-        lang={lang}
-        onSelectLang={onSelectLang}
+        onMenuToggle={toggleMenu}
       />
 
       {!deviceType.onDesktop && (
         <MobileNav
-          isOpen={menuIsOpen}
-          onMenuToggle={onMenuToggle}
-          lang={lang}
-          onSelectLang={onSelectLang}
+          isOpen={isMenuOpen}
+          onMenuToggle={toggleMenu}
         />
       )}
 
-      <Content deviceType={deviceType} onPopupToggle={onPopupToggle} />
+      <Content
+        deviceType={deviceType}
+        onPopupToggle={togglePopup}
+      />
 
       <Footer className="page__footer" />
 
-      <div
-        className={`go-top page__go-top container ${scrollPosition > 700 && 'go-top--visible'}`}
-      >
-        <div className="go-top__button">
-          <button
-            type="button"
-            onClick={scrollToTop}
-            className="
-          go-top__link
-          icon
-          icon--contain
-          icon--go-top
-          "
-          />
-        </div>
-      </div>
+      <GoTopButton />
 
-      <section className={`popup ${popupIsOpen ? 'popup--open' : ''}`}>
+      <section className={`popup ${isPopupOpen ? 'popup--open' : ''}`}>
         <div className="popup__area" />
         <div className="popup__body container">
           <div className="popup__content">
@@ -128,7 +72,7 @@ const App: FC = () => {
               <button
                 className="icon icon--cross-grey menu-close"
                 type="button"
-                onClick={onPopupToggle}
+                onClick={togglePopup}
               />
             </div>
 

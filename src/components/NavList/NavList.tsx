@@ -1,22 +1,30 @@
 import { FC, memo } from 'react';
-
-import sections from '../../api/sections.json';
+import { useSelector } from '../../hooks';
 
 type Props = {
-  blockName: string,
-  onLinkClick?: () => void,
+  blockName: string;
+  onLinkClick?: () => void;
 };
 
 const NavList: FC<Props> = ({ blockName, onLinkClick }) => {
+  const sections = useSelector(state => state.sections);
+  const fuaturesIsLoaded = !!useSelector(state => state.features.length);
+
   return (
     <ul className={`${blockName}__list`}>
-      {Object.entries(sections).map(([key, value]) => (
-        <li className={`${blockName}__item`} key={key}>
-          <a href={`#${key}`} className={`${blockName}__link link`} onClick={onLinkClick}>
-            {value}
-          </a>
-        </li>
-      ))}
+      {Object.entries(sections).map(([key, value]) => {
+        if (key === 'features' && !fuaturesIsLoaded) {
+          return undefined;
+        }
+
+        return (
+          <li className={`${blockName}__item`} key={key}>
+            <a href={`#${key}`} className={`${blockName}__link link`} onClick={onLinkClick}>
+              {value}
+            </a>
+          </li>
+        );
+      })}
     </ul>
   );
 };

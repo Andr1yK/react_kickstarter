@@ -1,9 +1,16 @@
-import React, { FC, LegacyRef, useCallback, useRef, useState, memo } from 'react';
-import Container from '../Container/Container';
+import React, {
+  FC,
+  LegacyRef,
+  useCallback,
+  useRef,
+  useState,
+  memo,
+} from 'react';
+import Container from '../../Container/Container';
 
 import './ContactUs.scss';
 
-const ContactUs: FC = () => {
+export const ContactUs: FC = memo(() => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
 
@@ -126,6 +133,4 @@ const ContactUs: FC = () => {
       </Container>
     </section>
   );
-};
-
-export default memo(ContactUs);
+});

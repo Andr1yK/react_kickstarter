@@ -13,49 +13,42 @@ import './MobileNav.scss';
 type Props = {
   isOpen: boolean;
   onMenuToggle: () => void;
-  lang: string;
-  onSelectLang: (lang: string) => void;
 };
 
-const MobileNav: FC<Props> = memo(
-  ({
-    isOpen, onMenuToggle, lang, onSelectLang,
-  }) => {
-    return (
-      <nav className={`menu ${isOpen ? 'menu--open' : ''}`} id="menu">
-        <Container>
-          <div className="menu__content">
-            <div className="menu__top">
-              <Logo />
+const MobileNav: FC<Props> = ({ isOpen, onMenuToggle }) => {
+  return (
+    <nav className={`menu ${isOpen ? 'menu--open' : ''}`} id="menu">
+      <Container>
+        <div className="menu__content">
+          <div className="menu__top">
+            <Logo />
 
-              <div className="menu__cross">
-                <button
-                  type="button"
-                  onClick={onMenuToggle}
-                  className="icon icon--cross menu-close"
-                />
-              </div>
+            <div className="menu__cross">
+              <button
+                type="button"
+                onClick={onMenuToggle}
+                className="icon icon--cross menu-close"
+              />
             </div>
-
-            <NavList blockName="menu" onLinkClick={onMenuToggle} />
-
-            <LangSwicher
-              className="menu__lang-swicher"
-              currentLang={lang}
-              onSelectLang={onSelectLang}
-            />
-
-            <a
-              href="cart.html"
-              className=" menu__buy button button--size--full"
-            >
-              Buy
-            </a>
           </div>
-        </Container>
-      </nav>
-    );
-  },
-);
 
-export default MobileNav;
+          <NavList
+            blockName="menu"
+            onLinkClick={onMenuToggle}
+          />
+
+          <LangSwicher className="menu__lang-swicher" />
+
+          <a
+            href="cart.html"
+            className=" menu__buy button button--size--full"
+          >
+            Buy
+          </a>
+        </div>
+      </Container>
+    </nav>
+  );
+};
+
+export default memo(MobileNav);

@@ -25,6 +25,10 @@
     display: none;
   }
 
+  &__text {
+    text-transform: uppercase;
+  }
+
   &__label--active &__text {
     color: $c-granit;
     font-weight: 500;

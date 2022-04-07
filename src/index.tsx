@@ -1,4 +1,10 @@
 import ReactDOM from 'react-dom';
 import App from './App';
+import { StateProvider } from './store/stateContext';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+  <StateProvider>
+    <App />
+  </StateProvider>,
+  document.getElementById('root'),
+);
