@@ -1,4 +1,4 @@
-import React, { FC, useReducer } from 'react';
+import React, { FC, memo, useReducer } from 'react';
 import { Action, Store } from '../types';
 import {
   combineReducers,
@@ -23,7 +23,7 @@ const rootReducer = combineReducers({
 export const DispatchContext = React.createContext((_action: Action) => {});
 export const StateContext = React.createContext(store);
 
-export const StateProvider: FC = ({ children }) => {
+export const StateProvider: FC = memo(({ children }) => {
   const [state, dispatch] = useReducer(rootReducer, store);
 
   return (
@@ -33,4 +33,4 @@ export const StateProvider: FC = ({ children }) => {
       </StateContext.Provider>
     </DispatchContext.Provider>
   );
-};
+});

@@ -1,7 +1,12 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 
-import { FC, useState, useEffect } from 'react';
+import {
+  FC,
+  useState,
+  useEffect,
+  memo,
+} from 'react';
 
 import './App.scss';
 
@@ -16,7 +21,7 @@ import { actionSetSectionsList, actionSetFeatures } from './store/reducers';
 import { getSections, getFeatures } from './api';
 import { throttle } from './helpers/throttle';
 
-const App: FC = () => {
+const App: FC = memo(() => {
   const dispatch = useDispatch();
 
   const [isMenuOpen, toggleMenu] = useToggle();
@@ -118,6 +123,6 @@ const App: FC = () => {
       </section>
     </>
   );
-};
+});
 
 export default App;
