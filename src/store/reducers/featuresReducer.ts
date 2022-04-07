@@ -1,8 +1,10 @@
-import { Reducer } from '../../types';
+import { FeatureBlock, Reducer } from '../../types';
+
+const SET_FEATURES = 'SET_FEATURES';
 
 export const featuresReducer: Reducer = (state, action) => {
   switch (action.type) {
-    case 'SET_FEATURES':
+    case SET_FEATURES:
       return {
         ...state,
         features: action.payload,
@@ -12,3 +14,8 @@ export const featuresReducer: Reducer = (state, action) => {
       return state;
   }
 };
+
+export const actionSetFeatures = (features: FeatureBlock) => ({
+  type: SET_FEATURES,
+  payload: features,
+});

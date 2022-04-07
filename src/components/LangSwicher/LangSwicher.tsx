@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
-import { actionSetLang } from '../../actions/actionSetLang';
 import { useDispatch, useSelector } from '../../hooks';
+import { actionSetLang } from '../../store/reducers';
 
 import './LangSwicher.scss';
 

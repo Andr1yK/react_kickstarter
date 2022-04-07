@@ -10,9 +10,9 @@ import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
 import MobileNav from './components/MobileNav/MobileNav';
 
-import { actionSetFeatures, actionSetSectionsList } from './actions';
 import { useDispatch, useToggle } from './hooks';
 import GoTopButton from './components/GoTopButton/GoTopButton';
+import { actionSetSectionsList, actionSetFeatures } from './store/reducers';
 
 const App: FC = () => {
   const dispatch = useDispatch();
