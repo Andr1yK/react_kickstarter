@@ -4,7 +4,7 @@
 import { FC, useState, useEffect } from 'react';
 
 import './App.scss';
-import { getDataFromServer } from './api/getDataFromServer';
+
 import Content from './components/Content/Content';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
@@ -13,6 +13,7 @@ import MobileNav from './components/MobileNav/MobileNav';
 import { useDispatch, useToggle } from './hooks';
 import GoTopButton from './components/GoTopButton/GoTopButton';
 import { actionSetSectionsList, actionSetFeatures } from './store/reducers';
+import { getSections, getFeatures } from './api';
 
 const App: FC = () => {
   const dispatch = useDispatch();
@@ -26,11 +27,15 @@ const App: FC = () => {
   });
 
   useEffect(() => {
-    getDataFromServer('/sections.json')
-      .then((data) => dispatch(actionSetSectionsList(data)));
+    /* eslint-disable no-console */
+    getSections()
+      .then(sections => dispatch(actionSetSectionsList(sections)))
+      .catch(console.warn);
 
-    getDataFromServer('/features.json')
-      .then((data) => dispatch(actionSetFeatures(data)));
+    getFeatures()
+      .then(features => dispatch(actionSetFeatures(features)))
+      .catch(console.warn);
+    /* eslint-disable no-console */
   }, []);
 
   useEffect(() => {
