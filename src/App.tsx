@@ -14,6 +14,7 @@ import { useDispatch, useToggle } from './hooks';
 import GoTopButton from './components/GoTopButton/GoTopButton';
 import { actionSetSectionsList, actionSetFeatures } from './store/reducers';
 import { getSections, getFeatures } from './api';
+import { throttle } from './helpers/throttle';
 
 const App: FC = () => {
   const dispatch = useDispatch();
@@ -21,10 +22,25 @@ const App: FC = () => {
   const [isMenuOpen, toggleMenu] = useToggle();
   const [isPopupOpen, togglePopup] = useToggle();
 
-  const [deviceType] = useState({
+  const [deviceType, setDeviceType] = useState({
     onTablet: window.matchMedia('(min-width: 768px)').matches,
     onDesktop: window.matchMedia('(min-width: 1024px)').matches,
   });
+
+  useEffect(() => {
+    const handleResize = throttle(() => setDeviceType({
+      onTablet: window.matchMedia('(min-width: 768px)').matches,
+      onDesktop: window.matchMedia('(min-width: 1024px)').matches,
+    }), 300);
+
+    window.addEventListener('resize', handleResize, {
+      passive: true,
+    });
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     /* eslint-disable no-console */
