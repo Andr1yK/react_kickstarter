@@ -16,7 +16,7 @@ import { throttle } from '../helpers/throttle';
 import { useDispatch, useToggle } from '../hooks';
 import { actionSetSectionsList, actionSetFeatures } from '../store/reducers';
 
-const Home: FC = memo(() => {
+const HomePage: FC = memo(() => {
   const dispatch = useDispatch();
 
   const [isMenuOpen, toggleMenu] = useToggle();
@@ -120,4 +120,4 @@ const Home: FC = memo(() => {
   );
 });
 
-export default Home;
+export default HomePage;
