@@ -13,7 +13,7 @@ import GoTopButton from '../components/GoTopButton/GoTopButton';
 import Header from '../components/Header/Header';
 import MobileNav from '../components/MobileNav/MobileNav';
 import { throttle } from '../helpers/throttle';
-import { useDispatch, useToggle } from '../hooks';
+import { useDispatch, useSelector, useToggle } from '../hooks';
 import { actionSetSectionsList, actionSetFeatures } from '../store/reducers';
 
 const HomePage: FC = memo(() => {
@@ -42,15 +42,23 @@ const HomePage: FC = memo(() => {
     };
   }, []);
 
+  const sections = useSelector(state => state.sections);
+  const featuresLength = useSelector(state => state.features.length);
+
   useEffect(() => {
     /* eslint-disable no-console */
-    getSections()
-      .then(sections => dispatch(actionSetSectionsList(sections)))
-      .catch(console.warn);
 
-    getFeatures()
-      .then(features => dispatch(actionSetFeatures(features)))
-      .catch(console.warn);
+    if (!Object.keys(sections).length) {
+      getSections()
+        .then(data => dispatch(actionSetSectionsList(data)))
+        .catch(console.warn);
+    }
+
+    if (!featuresLength) {
+      getFeatures()
+        .then(data => dispatch(actionSetFeatures(data)))
+        .catch(console.warn);
+    }
     /* eslint-disable no-console */
   }, []);
 
