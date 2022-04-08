@@ -1,4 +1,4 @@
-import { Reducer, Sections } from '../../types';
+import { Reducer, Sections } from '../../services/types';
 
 const SET_SECTIONS_LIST = 'SET_SECTIONS_LIST';
 

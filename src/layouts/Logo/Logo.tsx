@@ -1,0 +1,26 @@
+import { FC, memo } from 'react';
+
+import './Logo.scss';
+
+import { logo } from '../../images';
+
+type Props = {
+  className?: string;
+};
+
+const Logo: FC<Props> = ({ className }) => {
+  return (
+    <a
+      href="/"
+      className={`logo ${className}`}
+    >
+      <img src={logo} alt="crazy baby logo" className="logo__image" />
+    </a>
+  );
+};
+
+Logo.defaultProps = {
+  className: '',
+};
+
+export default memo(Logo);

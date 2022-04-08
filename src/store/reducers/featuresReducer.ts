@@ -1,4 +1,4 @@
-import { FeatureBlock, Reducer } from '../../types';
+import { FeatureBlock, Reducer } from '../../services/types';
 
 const SET_FEATURES = 'SET_FEATURES';
 

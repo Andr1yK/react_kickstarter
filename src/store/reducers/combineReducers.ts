@@ -1,4 +1,4 @@
-import { Reducer } from '../../types';
+import { Reducer } from '../../services/types';
 
 export const combineReducers = (
   reducers: { [key: string]: Reducer },

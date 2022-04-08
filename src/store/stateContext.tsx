@@ -1,5 +1,5 @@
 import React, { FC, memo, useReducer } from 'react';
-import { Action, Store } from '../types';
+import { Action, Store } from '../services/types';
 import {
   combineReducers,
   featuresReducer,

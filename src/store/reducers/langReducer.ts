@@ -1,4 +1,4 @@
-import { Reducer } from '../../types';
+import { Reducer } from '../../services/types';
 
 const SET_LANG = 'SET_LANG';
 
