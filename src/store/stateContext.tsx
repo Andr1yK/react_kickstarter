@@ -11,6 +11,10 @@ const store: Store = {
   lang: 'en',
   sections: {},
   features: [],
+  deviceType: {
+    onDesktop: false,
+    onTablet: false,
+  },
 };
 
 const rootReducer = combineReducers({
