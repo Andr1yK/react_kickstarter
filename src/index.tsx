@@ -1,10 +1,13 @@
+import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { StateProvider } from './store/stateContext';
 
 ReactDOM.render(
-  <StateProvider>
-    <App />
-  </StateProvider>,
+  <React.StrictMode>
+    <StateProvider>
+      <App />
+    </StateProvider>
+  </React.StrictMode>,
   document.getElementById('root'),
 );

@@ -8,7 +8,7 @@ import { useSelector } from '../../hooks';
 import Container from '../Container/Container';
 import {
   FirstScreen, Benefits, AboutUs, Technology, Features, ContactUs,
-} from '../ContentSections';
+} from '.';
 import NavList from '../NavList/NavList';
 
 type Props = {
