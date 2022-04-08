@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
-import { technology, martin } from '../../../images';
-import Container from '../../Container/Container';
+import { technology, martin } from '../../../../../images';
+import Container from '../../../../../components/Container/Container';
 import './Technology.scss';
 
 export const Technology: FC = memo(() => {

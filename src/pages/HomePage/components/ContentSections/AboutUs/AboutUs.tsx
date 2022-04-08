@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
-import { design } from '../../../images';
-import Container from '../../Container/Container';
+import { design } from '../../../../../images';
+import Container from '../../../../../components/Container/Container';
 
 import './AboutUs.scss';
 

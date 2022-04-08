@@ -6,7 +6,7 @@ import React, {
   useState,
   memo,
 } from 'react';
-import Container from '../../Container/Container';
+import Container from '../../../../../components/Container/Container';
 
 import './ContactUs.scss';
 

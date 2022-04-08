@@ -1,8 +1,8 @@
 import { FC, memo } from 'react';
-import Container from '../../Container/Container';
+import Container from '../../../../../components/Container/Container';
 import {
   calipers, speaker, wifi, sun,
-} from '../../../images';
+} from '../../../../../images';
 import './Benefits.scss';
 
 export const Benefits: FC = memo(() => {

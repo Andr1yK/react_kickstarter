@@ -4,12 +4,12 @@ import {
   memo,
 } from 'react';
 
-import { useSelector } from '../../hooks';
-import Container from '../Container/Container';
+import { useSelector } from '../../../../hooks';
+import Container from '../../../../components/Container/Container';
 import {
   FirstScreen, Benefits, AboutUs, Technology, Features, ContactUs,
 } from '../ContentSections';
-import NavList from '../NavList/NavList';
+import NavList from '../../../../components/NavList/NavList';
 
 type Props = {
   deviceType: {

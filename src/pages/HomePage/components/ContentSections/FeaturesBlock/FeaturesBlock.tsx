@@ -1,9 +1,9 @@
 import { FC, memo } from 'react';
-import { useSelector } from '../../../hooks';
-import { featuresImage } from '../../../images';
+import { useSelector } from '../../../../../hooks';
+import { featuresImage } from '../../../../../images';
 
-import Carousel from '../../Carousel/Carousel';
-import Container from '../../Container/Container';
+import Carousel from '../../../../../components/Carousel/Carousel';
+import Container from '../../../../../components/Container/Container';
 
 import './FeaturesBlock.scss';
 

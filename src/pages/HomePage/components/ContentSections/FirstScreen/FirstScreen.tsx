@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
 import { Link } from 'react-router-dom';
-import { headerImage } from '../../../images';
-import Container from '../../Container/Container';
+import { headerImage } from '../../../../../images';
+import Container from '../../../../../components/Container/Container';
 import './FirstScreen.scss';
 
 export const FirstScreen: FC = memo(() => {

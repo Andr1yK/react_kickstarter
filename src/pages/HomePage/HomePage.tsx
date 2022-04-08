@@ -2,45 +2,24 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import {
   FC,
-  useState,
   useEffect,
   memo,
 } from 'react';
-import { getSections, getFeatures } from '../api';
-import Content from '../components/Content/Content';
-import Footer from '../components/Footer/Footer';
-import GoTopButton from '../components/GoTopButton/GoTopButton';
-import Header from '../components/Header/Header';
-import MobileNav from '../components/MobileNav/MobileNav';
-import { throttle } from '../helpers/throttle';
-import { useDispatch, useSelector, useToggle } from '../hooks';
-import { actionSetSectionsList, actionSetFeatures } from '../store/reducers';
+import { getSections, getFeatures } from '../../api';
+import Content from './components/Content/Content';
+import Footer from '../../components/Footer/Footer';
+import GoTopButton from '../../components/GoTopButton/GoTopButton';
+import Header from '../../components/Header/Header';
+import MobileNav from '../../components/MobileNav/MobileNav';
+import { useDispatch, useSelector, useToggle } from '../../hooks';
+import { actionSetSectionsList, actionSetFeatures } from '../../store/reducers';
 
 const HomePage: FC = memo(() => {
   const dispatch = useDispatch();
+  const deviceType = useSelector(state => state.deviceType);
 
   const [isMenuOpen, toggleMenu] = useToggle();
   const [isPopupOpen, togglePopup] = useToggle();
-
-  const [deviceType, setDeviceType] = useState({
-    onTablet: window.matchMedia('(min-width: 768px)').matches,
-    onDesktop: window.matchMedia('(min-width: 1024px)').matches,
-  });
-
-  useEffect(() => {
-    const handleResize = throttle(() => setDeviceType({
-      onTablet: window.matchMedia('(min-width: 768px)').matches,
-      onDesktop: window.matchMedia('(min-width: 1024px)').matches,
-    }), 300);
-
-    window.addEventListener('resize', handleResize, {
-      passive: true,
-    });
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
 
   const sections = useSelector(state => state.sections);
   const featuresLength = useSelector(state => state.features.length);

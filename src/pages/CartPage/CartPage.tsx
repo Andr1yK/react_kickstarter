@@ -3,38 +3,39 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
 import { FC, memo } from 'react';
 import { Link } from 'react-router-dom';
+import Container from '../../components/Container/Container';
+import Logo from '../../components/Logo/Logo';
+
+import './CartPage.scss';
+
+const { PUBLIC_URL } = process.env;
 
 const CartPage: FC = () => {
   return (
     <section className="cart">
-      <div className="container">
+      <Container>
         <div className="cart__content grid grid--tablet">
           <header className="buy__header
               grid__item--t--1-8
               grid__item--d--1-12
             "
           >
-            <a
-              href="https://crazybaby.com/"
-              className="buy__logo logo"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <img
-                src="./images/logo.svg"
-                alt="crazy baby logo"
-                className="logo__image"
-              />
-            </a>
+            <Logo className="buy__logo" />
             <div className="buy__back">
               <Link to="/" className="icon icon--left-arrow menu-close" />
               {/* Повертати на сторінку назад по історії, але не напраму на головну */}
             </div>
             <div className="buy__cross">
-              <Link to="/" className="icon icon--left-arrow menu-close" />
+              <Link to="/" className="icon icon--cross-grey menu-close" />
             </div>
-            <div className="buy__bullets buy__bullets--hidden">
-              <label className="buy__bullet-content buy__bullet-content--active">
+            <div className="buy__bullets">
+              <label
+                className="
+                  buy__bullet-content
+                  buy__bullet-content--active
+                  buy__bullet-content--current
+                "
+              >
                 <input
                   type="radio"
                   name="stage"
@@ -96,7 +97,7 @@ const CartPage: FC = () => {
             "
           >
             <img
-              src="images/cart/luna-eye.png"
+              src={`${PUBLIC_URL}/images/cart/luna-eye.png`}
               alt="LUNA EYE silver"
               className="cart__image"
             />
@@ -179,7 +180,7 @@ const CartPage: FC = () => {
                 <div className="product-card__image-container">
                   <img
                     className="product-card__image"
-                    src="./images/cart/cart-gold.png"
+                    src={`${PUBLIC_URL}/images/cart/cart-gold.png`}
                     alt="siler luna eye"
                   />
                 </div>
@@ -219,7 +220,7 @@ const CartPage: FC = () => {
                 <div className="product-card__image-container">
                   <img
                     className="product-card__image"
-                    src="./images/cart/cart-silver.png"
+                    src={`${PUBLIC_URL}/images/cart/cart-silver.png`}
                     alt="siler luna eye"
                   />
                 </div>
@@ -280,18 +281,7 @@ const CartPage: FC = () => {
           >
             <div className="container">
               <div className="footer__content">
-                <a
-                  href="https://crazybaby.com/"
-                  className="footer__logo logo"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <img
-                    src="./images/logo.svg"
-                    alt="crazy baby logo"
-                    className="logo__image"
-                  />
-                </a>
+                <Logo className="footer__logo" />
                 <div className="footer__social">
                   <a
                     href="https://www.facebook.com/hicrazybaby/"
@@ -334,7 +324,7 @@ const CartPage: FC = () => {
             </div>
           </footer>
         </div>
-      </div>
+      </Container>
     </section>
   );
 };
