@@ -1,12 +1,11 @@
 import classNames from 'classnames';
 import { FC, memo, useMemo } from 'react';
-
-type ItemCoordinates = [number, number] | never[];
+import { GridItemPosition } from './types';
 
 type Props = {
   className?: string,
-  fromTablet?: ItemCoordinates,
-  fromDesktop?: ItemCoordinates,
+  fromTablet?: GridItemPosition,
+  fromDesktop?: GridItemPosition,
 };
 
 const GridItem: FC<Props> = memo(({

@@ -8,11 +8,11 @@ import { useSelector } from '../../../services/hooks';
 
 import {
   FirstScreen,
-  Benefits,
   AboutUs,
   Technology,
   Features,
   ContactUs,
+  Benefits,
 } from '.';
 import Navigation from './Navigation/Navigation';
 
