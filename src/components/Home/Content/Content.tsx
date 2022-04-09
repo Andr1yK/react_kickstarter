@@ -15,6 +15,7 @@ import {
   Benefits,
 } from '.';
 import Navigation from './Navigation/Navigation';
+import VideoSection from './VideoSection/VideoSection';
 
 type Props = {
   deviceType: {
