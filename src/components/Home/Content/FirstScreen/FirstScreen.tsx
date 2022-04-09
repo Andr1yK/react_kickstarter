@@ -27,8 +27,8 @@ export const FirstScreen: FC = memo(() => {
               <a
                 href="cart.html"
                 className="
-                    first-screen__cart
-                  "
+                  first-screen__cart
+                "
               >
                 <span className="icon icon--contain icon--cart" />
               </a>

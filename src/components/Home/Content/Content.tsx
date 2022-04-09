@@ -6,7 +6,6 @@ import {
 
 import { useSelector } from '../../../services/hooks';
 
-import Container from '../../../layouts/Container/Container';
 import {
   FirstScreen,
   Benefits,
@@ -15,7 +14,7 @@ import {
   Features,
   ContactUs,
 } from '.';
-import NavList from '../NavList/NavList';
+import Navigation from './Navigation/Navigation';
 
 type Props = {
   deviceType: {
@@ -32,13 +31,7 @@ const Content: FC<Props> = ({ deviceType, onPopupToggle }) => {
     <main className="main">
       <FirstScreen />
 
-      {deviceType.onDesktop && (
-        <section className="navigation page__section page__section--nav ">
-          <Container>
-            <NavList blockName="navigation" />
-          </Container>
-        </section>
-      )}
+      {deviceType.onDesktop && <Navigation />}
 
       <Benefits />
 
