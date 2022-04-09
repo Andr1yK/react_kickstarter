@@ -15,7 +15,8 @@ const VideoSection: FC<Props> = memo(({ onPlay }) => (
         <button
           className="icon icon--play-button"
           type="button"
-          onClick={onPlay} />
+          onClick={onPlay}
+        />
       </div>
     </div>
   </section>
