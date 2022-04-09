@@ -1,8 +1,9 @@
 import { FC, memo } from 'react';
-import { design } from '../../../../images';
 import Container from '../../../../layouts/Container/Container';
+import { Grid, GridItem } from '../../../../layouts/Grid';
 
 import './AboutUs.scss';
+import { design, design1024w, design768w } from './images';
 
 export const AboutUs: FC = memo(() => {
   return (
@@ -12,50 +13,36 @@ export const AboutUs: FC = memo(() => {
     >
       <Container>
         <div className="about__content">
-          <div className="about__content grid grid--mobile-flex">
-            <div
-              className="
-              about__image-container
-              grid__item
-              grid__item--t--1-4
-              grid__item--d--2-7
-              "
+          <Grid flexOnMobile className="about__content">
+            <GridItem
+              className="about__image-container"
+              fromTablet={[1, 4]}
+              fromDesktop={[2, 7]}
             >
               <img
                 className="about__image"
-                //   srcSet="
-                //   ./images/design-320w.jpg 320w,
-                //   ./images/design-768w.jpg 768w,
-                //   ./images/design-1024w.jpg 1024w
-                // "
-                //   sizes="
-                //   (min-width: 320px) 320px
-                //   (min-width: 768px) 748px,
-                //   968px
-                // "
+                srcSet={`
+                  ${design768w} 768w,
+                  ${design1024w} 1024w
+                `}
                 src={design}
                 alt="DESIGNED FOR THE FUTURE"
               />
-            </div>
+            </GridItem>
 
-            <h2
-              className="
-                about__title
-                grid__item
-                grid__item--t--4-8
-                grid__item--d--7-11
-              "
+            <GridItem
+              className="about__title"
+              fromTablet={[4, 8]}
+              fromDesktop={[7, 11]}
+              type="h2"
             >
               DESIGNED FOR THE FUTURE
-            </h2>
+            </GridItem>
 
-            <div
-              className="
-                about__text
-                grid__item
-                grid__item--t--5-8
-                grid__item--d--8-11
-              "
+            <GridItem
+              className="about__text"
+              fromTablet={[5, 8]}
+              fromDesktop={[8, 11]}
             >
               <p className="about__description">
                 In 2014, a group of geeky industrial designers, engineering
@@ -66,17 +53,19 @@ export const AboutUs: FC = memo(() => {
 
               <a
                 className="
-                  link
-                  link--green
-                  link--bottom-line
-                  about__link
-                "
+                link
+                link--green
+                link--bottom-line
+                about__link
+              "
                 href="https://crazybaby.com/"
+                target="_blank"
+                rel="noreferrer"
               >
                 see more about us
               </a>
-            </div>
-          </div>
+            </GridItem>
+          </Grid>
         </div>
       </Container>
     </section>
