@@ -15,6 +15,7 @@ import {
   Benefits,
 } from '.';
 import Navigation from './Navigation/Navigation';
+import VideoSection from './VideoSection/VideoSection';
 
 type Props = {
   deviceType: {
@@ -35,19 +36,7 @@ const Content: FC<Props> = ({ deviceType, onPopupToggle }) => {
 
       <Benefits />
 
-      <section
-        id="our-story"
-        className="page__section video-section"
-      >
-        <div className="video-section__content">
-          <div
-            className="video-section__play-button"
-            data-requred-video="about-video"
-          >
-            <button className=" icon icon--play-button" type="button" onClick={onPopupToggle} />
-          </div>
-        </div>
-      </section>
+      <VideoSection onPlay={onPopupToggle} />
 
       <AboutUs />
 
