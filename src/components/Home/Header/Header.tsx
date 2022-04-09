@@ -1,11 +1,11 @@
 import { FC, memo } from 'react';
-import Container from '../../../layouts/Container/Container';
-import Logo from '../../../layouts/Logo/Logo';
-
-import './Header.scss';
 
 import HeaderNav from './HeaderNav';
+import Logo from '../../../layouts/Logo/Logo';
 import HeaderMenuOpener from './HeaderMenuOpener';
+import Container from '../../../layouts/Container/Container';
+
+import './Header.scss';
 
 type Props = {
   className?: string;
