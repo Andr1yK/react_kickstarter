@@ -1,10 +1,8 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
-import {
-  FC,
-  memo,
-} from 'react';
+import { FC, memo } from 'react';
 
 import { useSelector } from '../../../services/hooks';
+import { useDeviceTypeState } from '../../../services/contexts/DeviceTypeContext';
 import { AboutUs } from './AboutUs';
 import { Benefits } from './Benefits';
 import { ContactUs } from './ContactUs';
@@ -15,32 +13,25 @@ import Navigation from './Navigation/Navigation';
 import { Technology } from './Technology';
 import VideoSection from './VideoSection/VideoSection';
 
-type Props = {
-  deviceType: {
-    onTablet: boolean,
-    onDesktop: boolean,
-  },
-  onPopupToggle: () => void,
-};
-
-export const Content: FC<Props> = memo(({ deviceType, onPopupToggle }) => {
+export const Content: FC = memo(() => {
   const featuresLength = useSelector(state => state.features.length);
+  const { onDesktop } = useDeviceTypeState();
 
   return (
     <main className="main">
       <FirstScreen />
 
-      {deviceType.onDesktop && <Navigation />}
+      {onDesktop && <Navigation />}
 
       <Benefits />
 
-      <VideoSection onPlay={onPopupToggle} />
+      <VideoSection />
 
       <AboutUs />
 
       <Technology />
 
-      {!!featuresLength && <Features deviceType={deviceType} />}
+      {!!featuresLength && <Features />}
 
       <ContactUs />
     </main>
