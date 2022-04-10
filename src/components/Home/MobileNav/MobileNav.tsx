@@ -15,7 +15,7 @@ type Props = {
   onMenuToggle: () => void;
 };
 
-const MobileNav: FC<Props> = ({ isOpen, onMenuToggle }) => {
+export const MobileNav: FC<Props> = memo(({ isOpen, onMenuToggle }) => {
   return (
     <nav className={`menu ${isOpen ? 'menu--open' : ''}`} id="menu">
       <Container>
@@ -39,6 +39,4 @@ const MobileNav: FC<Props> = ({ isOpen, onMenuToggle }) => {
       </Container>
     </nav>
   );
-};
-
-export default memo(MobileNav);
+});

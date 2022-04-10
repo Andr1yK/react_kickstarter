@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import {
-  FC, useCallback, useEffect, useState,
+  FC, memo, useCallback, useEffect, useState,
 } from 'react';
 import { throttle } from '../../../services/helpers/throttle';
 import './GoTopButton.scss';
 
-const GoTopButton: FC = () => {
+export const GoTopButton: FC = memo(() => {
   const [scrollPosition, setScrollPosition] = useState(0);
 
   useEffect(() => {
@@ -42,6 +42,4 @@ const GoTopButton: FC = () => {
       </div>
     </div>
   );
-};
-
-export default GoTopButton;
+});
