@@ -2,7 +2,7 @@ import { FC, memo } from 'react';
 
 import './Logo.scss';
 
-import { logo } from '../../images';
+import logo from './logo.svg';
 
 type Props = {
   className?: string;
