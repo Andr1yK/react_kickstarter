@@ -2,23 +2,25 @@ import { FC, memo } from 'react';
 import { useSelector } from '../../../../services/hooks';
 import { featuresImage } from '../../../../images';
 
-import Carousel from '../../../../layouts/Carousel/Carousel';
+import Carousel from './Carousel/Carousel';
 import Container from '../../../../layouts/Container/Container';
 
-import './FeaturesBlock.scss';
+import './Features.scss';
+import { GridItem, GridOnDevicePosition } from '../../../../layouts/Grid';
+import FeatureBlock from './FeatureBlock/FeatureBlock';
 
-const gridPositions = [
+const gridPositions: GridOnDevicePosition[] = [
   {
-    tablet: 'grid__item--t--4-8',
-    desktop: 'grid__item--d--6-10',
+    tablet: [4, 8],
+    desktop: [6, 10],
   },
   {
-    tablet: 'grid__item--t--1-5',
-    desktop: 'grid__item--d--2-6',
+    tablet: [1, 5],
+    desktop: [2, 6],
   },
   {
-    tablet: 'grid__item--t--3-7',
-    desktop: 'grid__item--d--4-8',
+    tablet: [3, 7],
+    desktop: [4, 8],
   },
 ];
 
@@ -49,42 +51,34 @@ export const Features: FC<Props> = memo(({ deviceType }) => {
           >
             <>
               {features.map((item, index) => (
-                <li
+                <GridItem
                   key={item.id}
                   className={`
                     features__item
                     slider__item
-                    ${gridPositions[index].tablet}
-                    ${gridPositions[index].desktop}
                   `}
+                  type="li"
+                  fromTablet={gridPositions[index].tablet}
+                  fromDesktop={gridPositions[index].desktop}
                 >
-                  <h4 className="features__item-title">{item.title}</h4>
-                  <ul className="features__list">
-                    {item.features.map((feature) => (
-                      <li key={feature.id} className="features__list-item">
-                        {feature.text}
-                      </li>
-                    ))}
-                  </ul>
-                </li>
+                  <FeatureBlock featuresBlockItems={item.features} title={item.title} />
+                </GridItem>
               ))}
             </>
           </Carousel>
         </div>
 
-        <div
-          className="
-            features__image-container
-            grid__item--d--1-12
-            grid__item--t--2-8
-          "
+        <GridItem
+          className="features__image-container"
+          fromTablet={[2, 8]}
+          fromDesktop={[1, 12]}
         >
           <img
             src={featuresImage}
             alt="crazybaby speaker"
             className="features__image"
           />
-        </div>
+        </GridItem>
       </Container>
     </section>
   );

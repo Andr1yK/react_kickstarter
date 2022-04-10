@@ -5,32 +5,22 @@
 import { FC, memo } from 'react';
 import Container from '../../../layouts/Container/Container';
 import LangSwicher from '../LangSwicher/LangSwicher';
-import Logo from '../../../layouts/Logo/Logo';
 import NavList from '../NavList/NavList';
 
 import './MobileNav.scss';
+import MobileNavHeader from './MobileNavHeader';
 
 type Props = {
   isOpen: boolean;
   onMenuToggle: () => void;
 };
 
-const MobileNav: FC<Props> = ({ isOpen, onMenuToggle }) => {
+export const MobileNav: FC<Props> = memo(({ isOpen, onMenuToggle }) => {
   return (
     <nav className={`menu ${isOpen ? 'menu--open' : ''}`} id="menu">
       <Container>
         <div className="menu__content">
-          <div className="menu__top">
-            <Logo />
-
-            <div className="menu__cross">
-              <button
-                type="button"
-                onClick={onMenuToggle}
-                className="icon icon--cross menu-close"
-              />
-            </div>
-          </div>
+          <MobileNavHeader onMenuToggle={onMenuToggle} />
 
           <NavList
             blockName="menu"
@@ -49,6 +39,4 @@ const MobileNav: FC<Props> = ({ isOpen, onMenuToggle }) => {
       </Container>
     </nav>
   );
-};
-
-export default memo(MobileNav);
+});

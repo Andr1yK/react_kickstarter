@@ -6,6 +6,8 @@ type Props = {
   flexOnMobile?: boolean,
   fromTablet?: boolean,
   fromDesktop?: boolean,
+  style?: React.CSSProperties,
+  type?: 'div' | 'ul',
 };
 
 const Grid: FC<Props> = memo(({
@@ -14,22 +16,44 @@ const Grid: FC<Props> = memo(({
   flexOnMobile = false,
   fromTablet = false,
   fromDesktop = false,
+  style = {},
+  type = 'div',
 }) => {
-  return (
-    <div
-      className={classNames(
-        'grid',
-        className,
-        {
-          'grid--mobile-flex': flexOnMobile,
-          'grid--tablet': fromTablet,
-          'grid--desktop': fromDesktop,
-        },
-      )}
-    >
-      {children}
-    </div>
+  const componentClassName = classNames(
+    'grid',
+    className,
+    {
+      'grid--mobile-flex': flexOnMobile,
+      'grid--tablet': fromTablet,
+      'grid--desktop': fromDesktop,
+    },
   );
+
+  const renderedComponent = () => {
+    switch (type) {
+      case 'ul':
+        return (
+          <ul
+            className={componentClassName}
+            style={style}
+          >
+            {children}
+          </ul>
+        );
+
+      default:
+        return (
+          <div
+            className={componentClassName}
+            style={style}
+          >
+            {children}
+          </div>
+        );
+    }
+  };
+
+  return renderedComponent();
 });
 
 export { Grid };

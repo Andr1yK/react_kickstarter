@@ -1,7 +1,9 @@
 import { FC, memo } from 'react';
-import { technology, martin } from '../../../../images';
 import Container from '../../../../layouts/Container/Container';
+import { Grid, GridItem } from '../../../../layouts/Grid';
+import { technology, technology1024w, technology768w } from './images';
 import './Technology.scss';
+import TechnologyQuotes from './TechnologyQuotes';
 
 export const Technology: FC = memo(() => {
   return (
@@ -10,47 +12,31 @@ export const Technology: FC = memo(() => {
       className="page__section technology"
     >
       <Container>
-        <div className="technology__content grid grid--desktop">
-          <h2 className="technology__title grid__item grid__item--d--2-4">
+        <Grid className="technology__content" fromDesktop>
+          <GridItem
+            className="technology__title"
+            fromDesktop={[2, 4]}
+            type="h2"
+          >
             technology
-          </h2>
-          <div className="technology__image-container grid__item grid__item--d--1-12">
+          </GridItem>
+
+          <GridItem className="technology__image-container" fromDesktop={[1, 12]}>
             <img
+              srcSet={`
+                ${technology768w} 768w,
+                ${technology1024w} 1024w
+              `}
               src={technology}
               alt="technology"
               className="technology__image"
             />
-          </div>
+          </GridItem>
 
-          <div
-            className="
-                technology__quotes-container
-                grid__item
-                grid__item--d--3-10
-              "
-          >
-            <p className="technology__quotes-text ">
-              It really took me by surprise honestly to have such full
-              beautiful sound that coming out of this small compact device.
-              And with the brush aluminum surface, it feels so familiar. Like
-              my iPhone.
-            </p>
-
-            <div className="technology__quotes-author">
-              <div className="technology__quotes-image-container">
-                <img
-                  className="technology__quotes-image"
-                  src={martin}
-                  alt="Creative director Garrett Martin"
-                />
-              </div>
-
-              <h4 className="technology__quotes-name">Garrett Martin</h4>
-
-              <div className="technology__quotes-rank">Creative Director</div>
-            </div>
-          </div>
-        </div>
+          <GridItem className="technology__quotes-container" fromDesktop={[3, 10]}>
+            <TechnologyQuotes />
+          </GridItem>
+        </Grid>
       </Container>
     </section>
   );

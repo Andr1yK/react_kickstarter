@@ -5,17 +5,15 @@ import {
 } from 'react';
 
 import { useSelector } from '../../../services/hooks';
+import { AboutUs } from './AboutUs';
+import { Benefits } from './Benefits';
+import { ContactUs } from './ContactUs';
+import { Features } from './Features';
+import { FirstScreen } from './FirstScreen';
 
-import Container from '../../../layouts/Container/Container';
-import {
-  FirstScreen,
-  Benefits,
-  AboutUs,
-  Technology,
-  Features,
-  ContactUs,
-} from '.';
-import NavList from '../NavList/NavList';
+import Navigation from './Navigation/Navigation';
+import { Technology } from './Technology';
+import VideoSection from './VideoSection/VideoSection';
 
 type Props = {
   deviceType: {
@@ -25,36 +23,18 @@ type Props = {
   onPopupToggle: () => void,
 };
 
-const Content: FC<Props> = ({ deviceType, onPopupToggle }) => {
+export const Content: FC<Props> = memo(({ deviceType, onPopupToggle }) => {
   const featuresLength = useSelector(state => state.features.length);
 
   return (
     <main className="main">
       <FirstScreen />
 
-      {deviceType.onDesktop && (
-        <section className="navigation page__section page__section--nav ">
-          <Container>
-            <NavList blockName="navigation" />
-          </Container>
-        </section>
-      )}
+      {deviceType.onDesktop && <Navigation />}
 
       <Benefits />
 
-      <section
-        id="our-story"
-        className="page__section video-section"
-      >
-        <div className="video-section__content">
-          <div
-            className="video-section__play-button"
-            data-requred-video="about-video"
-          >
-            <button className=" icon icon--play-button" type="button" onClick={onPopupToggle} />
-          </div>
-        </div>
-      </section>
+      <VideoSection onPlay={onPopupToggle} />
 
       <AboutUs />
 
@@ -65,6 +45,4 @@ const Content: FC<Props> = ({ deviceType, onPopupToggle }) => {
       <ContactUs />
     </main>
   );
-};
-
-export default memo(Content);
+});
