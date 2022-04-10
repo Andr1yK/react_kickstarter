@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
 import TechnologyQuotesAuthor from './TechnologyQuotesAuthor';
 
-const TechnologyQuotes: FC = memo(() => {
+export const TechnologyQuotes: FC = memo(() => {
   return (
     <>
       <p className="technology__quotes-text ">
@@ -15,5 +15,3 @@ const TechnologyQuotes: FC = memo(() => {
     </>
   );
 });
-
-export { TechnologyQuotes };
