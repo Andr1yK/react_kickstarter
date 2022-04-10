@@ -8,6 +8,7 @@ import {
   useRef,
 } from 'react';
 import { Grid } from '../../../../../layouts/Grid';
+import { useDeviceTypeState } from '../../../../../services/contexts/DeviceTypeContext';
 import './Carousel.scss';
 
 type Props = {
@@ -17,10 +18,6 @@ type Props = {
   itemWidth: number,
   animationDuration?: number,
   infinite?: boolean,
-  deviceType: {
-    onTablet: boolean,
-    onDesktop: boolean,
-  },
   children: ReactChild,
 };
 
@@ -31,10 +28,10 @@ const Carousel: FC<Props> = ({
   itemWidth,
   animationDuration = 300,
   infinite = false,
-  deviceType,
   children,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const deviceType = useDeviceTypeState();
 
   const timersId = useRef<NodeJS.Timeout[]>([]);
   let currentAnimationDuration: number = animationDuration;
@@ -98,7 +95,7 @@ const Carousel: FC<Props> = ({
       >
         <Grid
           className="slider__items features__items"
-          fromTablet
+          flexOnMobile
           type="ul"
           style={{
             transition: `transform ${currentAnimationDuration}ms`,

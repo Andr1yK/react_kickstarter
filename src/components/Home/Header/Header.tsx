@@ -9,16 +9,15 @@ import './Header.scss';
 
 type Props = {
   className?: string;
-  onMenuToggle: () => void;
 };
 
-export const Header: FC<Props> = memo(({ className = '', onMenuToggle }) => (
+export const Header: FC<Props> = memo(({ className = '' }) => (
   <header className={`header ${className}`}>
     <Container>
       <div className="header__content">
         <Logo />
 
-        <HeaderMenuOpener onClick={onMenuToggle} />
+        <HeaderMenuOpener />
 
         <HeaderNav />
       </div>

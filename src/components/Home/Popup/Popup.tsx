@@ -1,17 +1,16 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 /* eslint-disable jsx-a11y/control-has-associated-label */
+import classNames from 'classnames';
 import { memo, FC } from 'react';
+import { usePopupState } from '../contexts/PopupStateContext';
 
 import './Popup.scss';
 
-type Props = {
-  isOpen: boolean,
-  toggle: () => void,
-};
+export const Popup: FC = memo(() => {
+  const [isOpen, toggle] = usePopupState();
 
-export const Popup: FC<Props> = memo(({ isOpen, toggle }) => {
   return (
-    <section className={`popup ${isOpen ? 'popup--open' : ''}`}>
+    <section className={classNames('popup', { 'popup--open': isOpen })}>
       <div className="popup__area" />
       <div className="popup__body container">
         <div className="popup__content">
