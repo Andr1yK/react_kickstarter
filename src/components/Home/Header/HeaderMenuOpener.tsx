@@ -1,19 +1,20 @@
 import { FC, memo } from 'react';
+import { useMenuState } from '../contexts/MenuStateContext';
 
-type Props = {
-  onClick: () => void,
+const HeaderMenuOpener: FC = () => {
+  const [, toggle] = useMenuState();
+
+  return (
+    <button
+      type="button"
+      onClick={toggle}
+      className="header__menu-opener icon icon--menu-opener menu-opener"
+    >
+      <span />
+      <span />
+      <span />
+    </button>
+  );
 };
-
-const HeaderMenuOpener: FC<Props> = ({ onClick }) => (
-  <button
-    type="button"
-    onClick={onClick}
-    className="header__menu-opener icon icon--menu-opener menu-opener"
-  >
-    <span />
-    <span />
-    <span />
-  </button>
-);
 
 export default memo(HeaderMenuOpener);

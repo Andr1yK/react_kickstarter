@@ -1,10 +1,12 @@
 import {
-  FC, memo, useEffect, useState,
+  FC,
+  memo,
+  useEffect,
 } from 'react';
 import { getSections, getFeatures } from '../../api';
-import { throttle } from '../../services/helpers/throttle';
-import { useDispatch, useToggle } from '../../services/hooks';
+import { useDispatch, useToggleWithFixPage } from '../../services/hooks';
 import { actionSetSectionsList, actionSetFeatures } from '../../store/reducers';
+
 import Content from './Content';
 import Footer from '../../layouts/Footer';
 import GoTopButton from './GoTopButton';
@@ -12,31 +14,15 @@ import Header from './Header';
 import MobileNav from './MobileNav';
 import Popup from './Popup';
 
+import { MenuStateProvider } from './contexts/MenuStateContext';
+import { useDeviceTypeState } from '../../services/contexts/DeviceTypeContext';
+import { PopupStateProvider } from './contexts/PopupStateContext';
+
 export const Home: FC = memo(() => {
   const dispatch = useDispatch();
 
-  const [isMenuOpen, toggleMenu] = useToggle();
-  const [isPopupOpen, togglePopup] = useToggle();
-
-  const [deviceType, setDeviceType] = useState({
-    onTablet: window.matchMedia('(min-width: 768px)').matches,
-    onDesktop: window.matchMedia('(min-width: 1024px)').matches,
-  });
-
-  useEffect(() => {
-    const handleResize = throttle(() => setDeviceType({
-      onTablet: window.matchMedia('(min-width: 768px)').matches,
-      onDesktop: window.matchMedia('(min-width: 1024px)').matches,
-    }), 300);
-
-    window.addEventListener('resize', handleResize, {
-      passive: true,
-    });
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+  const { onDesktop } = useDeviceTypeState();
+  const [isPopupOpen, popupToggle] = useToggleWithFixPage();
 
   useEffect(() => {
     /* eslint-disable no-console */
@@ -50,38 +36,25 @@ export const Home: FC = memo(() => {
     /* eslint-disable no-console */
   }, [dispatch]);
 
-  useEffect(() => {
-    if (isMenuOpen || isPopupOpen) {
-      document.body.classList.add('page__body--with-menu');
-    } else {
-      document.body.classList.remove('page__body--with-menu');
-    }
-  }, [isMenuOpen, isPopupOpen]);
-
   return (
     <>
-      <Header
-        className="page__header"
-        onMenuToggle={toggleMenu}
-      />
+      <MenuStateProvider>
+        <Header className="page__header" />
 
-      {!deviceType.onDesktop && (
-        <MobileNav
-          isOpen={isMenuOpen}
-          onMenuToggle={toggleMenu}
-        />
-      )}
+        {!onDesktop && <MobileNav />}
+      </MenuStateProvider>
 
-      <Content
-        deviceType={deviceType}
-        onPopupToggle={togglePopup}
-      />
+      <PopupStateProvider value={[isPopupOpen, popupToggle]}>
+        <Content />
+      </PopupStateProvider>
 
       <Footer className="page__footer" />
 
       <GoTopButton />
 
-      <Popup isOpen={isPopupOpen} toggle={togglePopup} />
+      <PopupStateProvider value={[isPopupOpen, popupToggle]}>
+        <Popup />
+      </PopupStateProvider>
     </>
   );
 });

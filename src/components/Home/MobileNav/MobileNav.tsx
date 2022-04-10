@@ -2,29 +2,28 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable jsx-a11y/anchor-has-content */
 
+import classNames from 'classnames';
 import { FC, memo } from 'react';
 import Container from '../../../layouts/Container/Container';
+import { useMenuState } from '../contexts/MenuStateContext';
 import LangSwicher from '../LangSwicher/LangSwicher';
 import NavList from '../NavList/NavList';
 
 import './MobileNav.scss';
 import MobileNavHeader from './MobileNavHeader';
 
-type Props = {
-  isOpen: boolean;
-  onMenuToggle: () => void;
-};
+export const MobileNav: FC = memo(() => {
+  const [isOpen, toggle] = useMenuState();
 
-export const MobileNav: FC<Props> = memo(({ isOpen, onMenuToggle }) => {
   return (
-    <nav className={`menu ${isOpen ? 'menu--open' : ''}`} id="menu">
+    <nav className={classNames('menu', { 'menu--open': isOpen })} id="menu">
       <Container>
         <div className="menu__content">
-          <MobileNavHeader onMenuToggle={onMenuToggle} />
+          <MobileNavHeader />
 
           <NavList
             blockName="menu"
-            onLinkClick={onMenuToggle}
+            onLinkClick={toggle}
           />
 
           <LangSwicher className="menu__lang-swicher" />
