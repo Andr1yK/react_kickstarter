@@ -1,11 +1,11 @@
-.buy {
-  &__header {
-    margin-bottom: 40px;
-    order: 0;
+@import "../../../../assets/styles/utils";
 
-    @include onTablet {
-      margin-bottom: 90px;
-    }
+.buy {
+  margin-bottom: 40px;
+  order: 0;
+
+  @include onTablet {
+    margin-bottom: 90px;
   }
 
   &__logo {
