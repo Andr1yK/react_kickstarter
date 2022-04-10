@@ -1,4 +1,5 @@
 import { FC, memo } from 'react';
+import { Link } from 'react-router-dom';
 
 import './Logo.scss';
 
@@ -8,19 +9,12 @@ type Props = {
   className?: string;
 };
 
-const Logo: FC<Props> = ({ className }) => {
+const Logo: FC<Props> = ({ className = '' }) => {
   return (
-    <a
-      href="/"
-      className={`logo ${className}`}
-    >
+    <Link to="/" className={`logo ${className}`}>
       <img src={logo} alt="crazy baby logo" className="logo__image" />
-    </a>
+    </Link>
   );
-};
-
-Logo.defaultProps = {
-  className: '',
 };
 
 export default memo(Logo);
