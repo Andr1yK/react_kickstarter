@@ -8,11 +8,11 @@ import { getSections, getFeatures } from '../../api';
 import { throttle } from '../../services/helpers/throttle';
 import { useDispatch, useToggle } from '../../services/hooks';
 import { actionSetSectionsList, actionSetFeatures } from '../../store/reducers';
-import Content from './Content/Content';
-import Footer from '../../layouts/Footer/Footer';
-import GoTopButton from './GoTopButton/GoTopButton';
-import Header from './Header/Header';
-import MobileNav from './MobileNav/MobileNav';
+import Content from './Content';
+import Footer from '../../layouts/Footer';
+import GoTopButton from './GoTopButton';
+import Header from './Header';
+import MobileNav from './MobileNav';
 
 const Home: FC = () => {
   const dispatch = useDispatch();

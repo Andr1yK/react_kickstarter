@@ -5,16 +5,14 @@ import {
 } from 'react';
 
 import { useSelector } from '../../../services/hooks';
+import { AboutUs } from './AboutUs';
+import { Benefits } from './Benefits';
+import { ContactUs } from './ContactUs';
+import { Features } from './Features';
+import { FirstScreen } from './FirstScreen';
 
-import {
-  FirstScreen,
-  AboutUs,
-  Technology,
-  Features,
-  ContactUs,
-  Benefits,
-} from '.';
 import Navigation from './Navigation/Navigation';
+import { Technology } from './Technology';
 import VideoSection from './VideoSection/VideoSection';
 
 type Props = {
@@ -25,7 +23,7 @@ type Props = {
   onPopupToggle: () => void,
 };
 
-const Content: FC<Props> = ({ deviceType, onPopupToggle }) => {
+export const Content: FC<Props> = memo(({ deviceType, onPopupToggle }) => {
   const featuresLength = useSelector(state => state.features.length);
 
   return (
@@ -63,6 +61,4 @@ const Content: FC<Props> = ({ deviceType, onPopupToggle }) => {
       <ContactUs />
     </main>
   );
-};
-
-export default memo(Content);
+});

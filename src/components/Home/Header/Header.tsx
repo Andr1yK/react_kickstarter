@@ -12,7 +12,7 @@ type Props = {
   onMenuToggle: () => void;
 };
 
-const Header: FC<Props> = ({ className = '', onMenuToggle }) => (
+export const Header: FC<Props> = memo(({ className = '', onMenuToggle }) => (
   <header className={`header ${className}`}>
     <Container>
       <div className="header__content">
@@ -24,6 +24,4 @@ const Header: FC<Props> = ({ className = '', onMenuToggle }) => (
       </div>
     </Container>
   </header>
-);
-
-export default memo(Header);
+));
