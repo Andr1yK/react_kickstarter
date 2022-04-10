@@ -1,4 +1,5 @@
 import { FC, memo } from 'react';
+import { Link } from 'react-router-dom';
 import { headerImage } from '../../../../images';
 import Container from '../../../../layouts/Container/Container';
 import { Grid, GridItem } from '../../../../layouts/Grid';
@@ -16,14 +17,9 @@ export const FirstScreen: FC = memo(() => {
           >
             <h1 className="first-screen__title">
               Futuristic Wireless Speaker
-              <a
-                href="cart.html"
-                className="
-                  first-screen__cart
-                "
-              >
+              <Link to="cart" className="first-screen__cart">
                 <span className="icon icon--contain icon--cart" />
-              </a>
+              </Link>
             </h1>
 
             <p className="first-screen__description">

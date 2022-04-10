@@ -4,6 +4,7 @@
 
 import classNames from 'classnames';
 import { FC, memo } from 'react';
+import { Link } from 'react-router-dom';
 import Container from '../../../layouts/Container/Container';
 import { useMenuState } from '../contexts/MenuStateContext';
 import LangSwicher from '../LangSwicher/LangSwicher';
@@ -28,12 +29,9 @@ export const MobileNav: FC = memo(() => {
 
           <LangSwicher className="menu__lang-swicher" />
 
-          <a
-            href="cart.html"
-            className=" menu__buy button button--size--full"
-          >
+          <Link to="cart" className="menu__buy button button--size--full">
             Buy
-          </a>
+          </Link>
         </div>
       </Container>
     </nav>
