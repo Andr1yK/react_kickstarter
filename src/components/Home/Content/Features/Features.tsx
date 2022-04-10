@@ -24,14 +24,7 @@ const gridPositions: GridOnDevicePosition[] = [
   },
 ];
 
-type Props = {
-  deviceType: {
-    onTablet: boolean,
-    onDesktop: boolean,
-  },
-};
-
-export const Features: FC<Props> = memo(({ deviceType }) => {
+export const Features: FC = memo(() => {
   const features = useSelector(state => state.features);
 
   return (
@@ -47,7 +40,6 @@ export const Features: FC<Props> = memo(({ deviceType }) => {
             length={3}
             itemWidth={243}
             animationDuration={300}
-            deviceType={deviceType}
           >
             <>
               {features.map((item, index) => (
