@@ -16,7 +16,7 @@ export const Technology: FC = memo(() => {
           <GridItem
             className="technology__title"
             fromDesktop={[2, 4]}
-            type="h2"
+            htmlTag="h2"
           >
             technology
           </GridItem>

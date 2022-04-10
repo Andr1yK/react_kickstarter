@@ -34,7 +34,7 @@ export const AboutUs: FC = memo(() => {
               className="about__title"
               fromTablet={[4, 8]}
               fromDesktop={[7, 11]}
-              type="h2"
+              htmlTag="h2"
             >
               DESIGNED FOR THE FUTURE
             </GridItem>

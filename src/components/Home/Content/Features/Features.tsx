@@ -49,7 +49,7 @@ export const Features: FC = memo(() => {
                     features__item
                     slider__item
                   `}
-                  type="li"
+                  htmlTag="li"
                   fromTablet={gridPositions[index].tablet}
                   fromDesktop={gridPositions[index].desktop}
                 >

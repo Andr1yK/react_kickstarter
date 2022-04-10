@@ -1,12 +1,17 @@
 import classNames from 'classnames';
-import { FC, memo, useMemo } from 'react';
+import React, {
+  FC,
+  memo,
+  useMemo,
+} from 'react';
 import { GridItemPosition } from './types';
 
 type Props = {
   className?: string,
   fromTablet?: GridItemPosition,
   fromDesktop?: GridItemPosition,
-  type?: 'div' | 'h2' | 'li',
+  htmlTag?: string,
+  render?: null | FC<Props>
 };
 
 const GridItem: FC<Props> = memo(({
@@ -14,7 +19,8 @@ const GridItem: FC<Props> = memo(({
   className,
   fromTablet = [],
   fromDesktop = [],
-  type = 'div',
+  htmlTag = 'div',
+  render = null,
 }) => {
   const tabletPosition = useMemo(() => `grid__item--t--${fromTablet[0]}-${fromTablet[1]}`, [fromTablet]);
   const desktopPosition = useMemo(() => `grid__item--d--${fromDesktop[0]}-${fromDesktop[1]}`, [fromDesktop]);
@@ -28,32 +34,7 @@ const GridItem: FC<Props> = memo(({
     },
   );
 
-  const renderedComponent = () => {
-    switch (type) {
-      case 'h2':
-        return (
-          <h2 className={componentClassName}>
-            {children}
-          </h2>
-        );
-
-      case 'li':
-        return (
-          <li className={componentClassName}>
-            {children}
-          </li>
-        );
-
-      default:
-        return (
-          <div className={componentClassName}>
-            {children}
-          </div>
-        );
-    }
-  };
-
-  return renderedComponent();
+  return React.createElement(render || htmlTag, { className: componentClassName }, children);
 });
 
 export { GridItem };
