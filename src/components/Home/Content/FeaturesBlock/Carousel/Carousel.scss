@@ -1,4 +1,5 @@
-@import "../../assets/styles/utils";
+@import "../../../../../assets/styles/utils";
+
 
 .slider {
   overflow: hidden;
@@ -38,23 +39,23 @@
     background-size: contain;
     background-repeat: no-repeat;
 
-    background-image: url(../../assets/images/icons/other/slider-arrow.svg);
+    background-image: url(../../../../../assets/images/icons/other/slider-arrow.svg);
 
     &[disabled] {
-      background: url(../../assets/images/icons/other/slider-arrow-inact.svg);
+      background: url(../../../../../assets/images/icons/other/slider-arrow-inact.svg);
     }
   }
 
   &__next-button {
     transform: translateX(-10%) rotateZ(180deg);
     @include onHover {
-      background-image: url(../../assets/images/icons/other/slider-arrow-hover.svg);
+      background-image: url(../../../../../assets/images/icons/other/slider-arrow-hover.svg);
     }
   }
 
   &__prev-button {
     @include onHover {
-      background-image: url(../../assets/images/icons/other/slider-arrow-hover.svg);
+      background-image: url(../../../../../assets/images/icons/other/slider-arrow-hover.svg);
     }
   }
 

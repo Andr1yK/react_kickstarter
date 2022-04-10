@@ -7,6 +7,7 @@ import {
   memo,
   useRef,
 } from 'react';
+import { Grid } from '../../../../../layouts/Grid';
 import './Carousel.scss';
 
 type Props = {
@@ -101,8 +102,10 @@ const Carousel: FC<Props> = ({
           width: deviceType.onTablet ? 'auto' : frameSize * itemWidth,
         }}
       >
-        <ul
-          className="slider__items features__items grid grid--tablet"
+        <Grid
+          className="slider__items features__items"
+          fromTablet
+          type="ul"
           style={{
             transition: `transform ${currentAnimationDuration}ms`,
             transform: `translateX(-${currentIndex * itemWidth}px)`,
@@ -110,10 +113,10 @@ const Carousel: FC<Props> = ({
           }}
         >
           {children}
-        </ul>
+        </Grid>
       </div>
 
-      { !deviceType.onTablet && (
+      {!deviceType.onTablet && (
         <div className="slider__control">
           <div className="slider__buttons">
             <button

@@ -6,7 +6,7 @@ type Props = {
   className?: string,
   fromTablet?: GridItemPosition,
   fromDesktop?: GridItemPosition,
-  type?: 'div' | 'h2',
+  type?: 'div' | 'h2' | 'li',
 };
 
 const GridItem: FC<Props> = memo(({
@@ -35,6 +35,13 @@ const GridItem: FC<Props> = memo(({
           <h2 className={componentClassName}>
             {children}
           </h2>
+        );
+
+      case 'li':
+        return (
+          <li className={componentClassName}>
+            {children}
+          </li>
         );
 
       default:
