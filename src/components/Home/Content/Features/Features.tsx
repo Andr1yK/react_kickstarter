@@ -5,7 +5,7 @@ import { featuresImage } from '../../../../images';
 import Carousel from './Carousel/Carousel';
 import Container from '../../../../layouts/Container/Container';
 
-import './FeaturesBlock.scss';
+import './Features.scss';
 import { GridItem, GridOnDevicePosition } from '../../../../layouts/Grid';
 import FeatureBlock from './FeatureBlock/FeatureBlock';
 
