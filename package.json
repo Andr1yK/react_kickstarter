@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "mate-scripts start",
+    "start": "mate-scripts start -l",
     "build": "mate-scripts build",
     "test": "mate-scripts test",
     "lint-js": "mate-scripts lint -j",

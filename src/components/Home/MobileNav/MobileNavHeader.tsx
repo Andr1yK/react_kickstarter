@@ -15,7 +15,8 @@ const MobileNavHeader: FC = memo(() => {
           id="menuCross"
           type="button"
           onClick={toggle}
-          className="icon icon--cross menu-close" />
+          className="icon icon--cross menu-close"
+        />
       </div>
     </div>
   );
