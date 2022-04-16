@@ -15,7 +15,7 @@ export const featuresReducer: Reducer = (state, action) => {
   }
 };
 
-export const actionSetFeatures = (features: FeatureBlock) => ({
+export const actionSetFeatures = (features: FeatureBlock[]) => ({
   type: SET_FEATURES,
   payload: features,
 });
