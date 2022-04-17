@@ -13,18 +13,25 @@ import style from './Counter.module.scss';
 type Props = {
   className?: string,
   initialValue?: number,
+  min?: number,
+  max?: number,
 };
 
-export const Counter: FC<Props> = memo(({ className = '', initialValue = 0 }) => {
+export const Counter: FC<Props> = memo(({
+  className = '',
+  initialValue = 0,
+  min = 0,
+  max = 99,
+}) => {
   const [count, setCount] = useState(initialValue);
 
   const getValidCount = useCallback((value: number, currentValue: number) => {
-    if (value < 0) {
-      return 0;
+    if (value < min) {
+      return min;
     }
 
-    if (value > 99) {
-      return 99;
+    if (value > max) {
+      return max;
     }
 
     if (Number.isNaN(value)) {
@@ -32,7 +39,7 @@ export const Counter: FC<Props> = memo(({ className = '', initialValue = 0 }) =>
     }
 
     return value;
-  }, []);
+  }, [max, min]);
 
   const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     const value = Number(event.target.value);
@@ -53,7 +60,7 @@ export const Counter: FC<Props> = memo(({ className = '', initialValue = 0 }) =>
     >
       <button
         type="button"
-        disabled={count <= 0}
+        disabled={count <= min}
         onClick={handleClick(-1)}
         className={classNames(
           style.counter__button,
@@ -74,7 +81,7 @@ export const Counter: FC<Props> = memo(({ className = '', initialValue = 0 }) =>
       </label>
       <button
         type="button"
-        disabled={count >= 99}
+        disabled={count >= max}
         onClick={handleClick(1)}
         className={classNames(
           style.counter__button,
