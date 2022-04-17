@@ -19,8 +19,8 @@ type Props = {
 
 export const Counter: FC<Props> = memo(({
   className = '',
-  initialValue = 0,
-  min = 0,
+  initialValue = 1,
+  min = 1,
   max = 99,
 }) => {
   const [count, setCount] = useState(initialValue);
