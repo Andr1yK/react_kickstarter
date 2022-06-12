@@ -10,6 +10,7 @@ module.exports = {
       functions: 'defaultArguments',
     }],
     'max-len': ['error', {
+      code: 100,
       ignoreTemplateLiterals: true,
       ignoreStrings: true,
       ignoreComments: true,

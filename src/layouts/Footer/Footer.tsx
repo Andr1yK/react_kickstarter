@@ -13,7 +13,7 @@ type Props = {
   className?: string;
 };
 
-const Footer: FC<Props> = ({ className = '' }) => {
+export const Footer: FC<Props> = memo(({ className = '' }) => {
   return (
     <footer className={`footer ${className}`}>
       <Container>
@@ -29,6 +29,4 @@ const Footer: FC<Props> = ({ className = '' }) => {
       </Container>
     </footer>
   );
-};
-
-export default memo(Footer);
+});

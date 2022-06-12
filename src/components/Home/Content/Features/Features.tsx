@@ -53,7 +53,10 @@ export const Features: FC = memo(() => {
                   fromTablet={gridPositions[index].tablet}
                   fromDesktop={gridPositions[index].desktop}
                 >
-                  <FeatureBlock featuresBlockItems={item.features} title={item.title} />
+                  <FeatureBlock
+                    featuresBlockItems={item.features}
+                    title={item.title}
+                  />
                 </GridItem>
               ))}
             </>

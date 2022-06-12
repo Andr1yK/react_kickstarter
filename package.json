@@ -53,10 +53,10 @@
     "mochawesome": "^6.2.1",
     "mochawesome-merge": "^4.2.0",
     "mochawesome-report-generator": "^5.1.0",
+    "postcss": "^8.4.13",
     "stylelint": "^14.9.1",
     "stylelint-config-recommended-scss": "^6.0.0",
-    "stylelint-scss": "^4.2.0",
-    "postcss": "^8.4.13"
+    "stylelint-scss": "^4.2.0"
   },
   "eslintConfig": {
     "extends": "react-app"
