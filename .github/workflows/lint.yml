@@ -1,7 +1,7 @@
 name: Lint
 
 on:
-  push:
+  pull_request:
     branches:
       - '**'
 
@@ -23,8 +23,6 @@ jobs:
 
       - name: Install Node.js dependencies
         run: npm ci
-
-      - run: npm install
 
       - name: Run linter
         run: npm run lint-js && npm run lint-css

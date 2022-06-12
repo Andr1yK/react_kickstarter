@@ -7,8 +7,8 @@
     "start": "mate-scripts start",
     "build": "mate-scripts build",
     "test": "mate-scripts test",
-    "lint-js": "mate-scripts lint -j",
-    "lint-css": "mate-scripts lint -s",
+    "lint-js": "eslint . --ext .js,.jsx,.ts,.tsx --ignore-pattern node_modules/,dist/",
+    "lint-css": "npx stylelint \"**/*.scss\"",
     "lint": "npm run lint-js && npm run lint-css",
     "update": "mate-scripts update",
     "postinstall": "npm run update",
@@ -52,7 +52,8 @@
     "mochawesome": "^6.2.1",
     "mochawesome-merge": "^4.2.0",
     "mochawesome-report-generator": "^5.1.0",
-    "stylelint": "^13.13.1"
+    "stylelint": "^13.13.1",
+    "stylelint-config-standard-scss": "^4.0.0"
   },
   "eslintConfig": {
     "extends": "react-app"

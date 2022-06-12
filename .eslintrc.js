@@ -1,4 +1,8 @@
 module.exports = {
+  parserOptions: {
+    project: 'tsconfig.eslint.json',
+    sourceType: 'module',
+  },
   extends: ['@mate-academy/eslint-config-react-typescript', 'plugin:cypress/recommended'],
   rules: {
     'react/require-default-props': ['error', {
@@ -12,7 +16,7 @@ module.exports = {
       ignoreRegExpLiterals: true,
     }],
     'jsx-a11y/label-has-associated-control': ['error', {
-      assert: "either",
+      assert: 'either',
     }],
   },
 };
