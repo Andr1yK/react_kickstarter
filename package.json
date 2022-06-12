@@ -34,6 +34,9 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
+    "stylelint": "^14.9.1",
+    "stylelint-config-recommended-scss": "^6.0.0",
+    "stylelint-scss": "^4.2.0",
     "typescript": "^4.3.5"
   },
   "devDependencies": {
@@ -52,7 +55,6 @@
     "mochawesome": "^6.2.1",
     "mochawesome-merge": "^4.2.0",
     "mochawesome-report-generator": "^5.1.0",
-    "stylelint": "^13.13.1",
     "stylelint-config-standard-scss": "^4.0.0"
   },
   "eslintConfig": {
