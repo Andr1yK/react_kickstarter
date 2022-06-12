@@ -33,10 +33,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Install modules
       run: npm ci
-    - name: Run deploy config
-      run: sh ./deploy.sh
-      env:
-        GITHUB_TOKEN: ${{ secrets.github_token }}
-        DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+    - run: npm run build
     - name: Run deploy
-      run: npm run deploy
+      run: sh ./deploy.sh
