@@ -51,7 +51,11 @@ const Content: FC<Props> = ({ deviceType, onPopupToggle }) => {
             className="video-section__play-button"
             data-requred-video="about-video"
           >
-            <button className=" icon icon--play-button" type="button" onClick={onPopupToggle} />
+            <button
+              className=" icon icon--play-button"
+              type="button"
+              onClick={onPopupToggle}
+            />
           </div>
         </div>
       </section>

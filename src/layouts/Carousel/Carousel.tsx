@@ -40,7 +40,11 @@ const Carousel: FC<Props> = ({
 
   useEffect(() => () => timersId.current.forEach(clearTimeout), [timersId]);
 
-  const invisibleScroll = (startIndex: number, endIndex: number, newAnimationDuration: number) => {
+  const invisibleScroll = (
+    startIndex: number,
+    endIndex: number,
+    newAnimationDuration: number,
+  ) => {
     timersId.current.push(setTimeout(() => {
       currentAnimationDuration = 0;
       setCurrentIndex(startIndex);
@@ -72,10 +76,12 @@ const Carousel: FC<Props> = ({
     const newIndex: number = currentIndex + step;
     const lastIndex = length - frameSize;
 
-    const swapIndex = length + step + (currentIndex % 2) - frameSize * +(frameSize === 1);
+    const swapIndex = length + step + (currentIndex % 2)
+      - frameSize * +(frameSize === 1);
 
     if (newIndex >= swapIndex && infinite) {
-      const startIndex = (currentIndex % 2) + (newIndex - swapIndex) * +(frameSize !== 1);
+      const startIndex = (currentIndex % 2) + (newIndex - swapIndex)
+        * +(frameSize !== 1);
 
       invisibleScroll(
         startIndex,
