@@ -7,7 +7,7 @@
     "start": "mate-scripts start",
     "build": "mate-scripts build",
     "test": "mate-scripts test",
-    "lint-js": "npx eslint . --ext .js,.jsx,.ts,.tsx --ignore-pattern node_modules/,dist/ -c .eslintrc.js",
+    "lint-js": "npx eslint . --ext .js,.jsx,.ts,.tsx --ignore-pattern node_modules/,dist/",
     "lint-css": "npx stylelint \"**/*.scss\"",
     "lint": "npm run lint-js && npm run lint-css",
     "predeploy": "npm run build",
