@@ -11,8 +11,6 @@ on:
 
 jobs:
   deploy-to-gh-pages:
-    needs:
-      - run_linter
     strategy:
       matrix:
         node-version: [ 14.x ]
