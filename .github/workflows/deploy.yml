@@ -4,7 +4,7 @@ on:
   push:
     branches: [ "main" ]
   workflow_run:
-    workflows: [ "run_linter" ]
+    workflows: [ "Lint" ]
     branches: [ "main" ]
     types:
       - completed
