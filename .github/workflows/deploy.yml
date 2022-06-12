@@ -33,9 +33,9 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Install modules
       run: npm ci
-    - name: Run deploy to gh-pages
+    - name: Run build
       run: npm run build
-    - run: ./deploy.sh
+    - run: sh ./deploy.sh
       env:
         GITHUB_TOKEN: ${{ secrets.github_token }}
         DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
