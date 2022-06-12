@@ -1,0 +1,31 @@
+name: DeployToGhPages
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_run:
+    workflows: [ "lint" ]
+    branches: [ main ]
+    types:
+      - completed
+
+jobs:
+  deploy-to-gh-pages:
+    needs:
+      - run_linter
+    strategy:
+      matrix:
+        node-version: [ 14.x ]
+
+    name: Deploy to gh-pages
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm ci
+    - run: npm run deploy
