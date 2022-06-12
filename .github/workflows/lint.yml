@@ -1,8 +1,8 @@
 name: Lint
 
 on:
-  pull_request:
-    branches: [ master ]
+  pull:
+    branches: [ '**' ]
 
 jobs:
   run_linter:
