@@ -1,29 +1,26 @@
 import { FC, memo } from 'react';
-import Container from '../../../layouts/Container/Container';
+
+import HeaderNav from './HeaderNav';
 import Logo from '../../../layouts/Logo/Logo';
+import HeaderMenuOpener from './HeaderMenuOpener';
+import Container from '../../../layouts/Container/Container';
 
 import './Header.scss';
 
-import HeaderNav from './HeaderNav';
-import HeaderMenuOpener from './HeaderMenuOpener';
-
 type Props = {
   className?: string;
-  onMenuToggle: () => void;
 };
 
-const Header: FC<Props> = ({ className = '', onMenuToggle }) => (
+export const Header: FC<Props> = memo(({ className = '' }) => (
   <header className={`header ${className}`}>
     <Container>
       <div className="header__content">
         <Logo />
 
-        <HeaderMenuOpener onClick={onMenuToggle} />
+        <HeaderMenuOpener />
 
         <HeaderNav />
       </div>
     </Container>
   </header>
-);
-
-export default memo(Header);
+));

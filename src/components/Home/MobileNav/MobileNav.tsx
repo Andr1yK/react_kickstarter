@@ -2,53 +2,38 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable jsx-a11y/anchor-has-content */
 
+import classNames from 'classnames';
 import { FC, memo } from 'react';
+import { Link } from 'react-router-dom';
 import Container from '../../../layouts/Container/Container';
+import { useMenuState } from '../contexts/MenuStateContext';
 import LangSwicher from '../LangSwicher/LangSwicher';
-import Logo from '../../../layouts/Logo/Logo';
 import NavList from '../NavList/NavList';
 
 import './MobileNav.scss';
+import MobileNavHeader from './MobileNavHeader';
 
-type Props = {
-  isOpen: boolean;
-  onMenuToggle: () => void;
-};
+export const MobileNav: FC = memo(() => {
+  const [isOpen, toggle] = useMenuState();
 
-const MobileNav: FC<Props> = ({ isOpen, onMenuToggle }) => {
   return (
-    <nav className={`menu ${isOpen ? 'menu--open' : ''}`} id="menu">
+    <nav className={classNames('menu', { 'menu--open': isOpen })} id="menu">
       <Container>
         <div className="menu__content">
-          <div className="menu__top">
-            <Logo />
-
-            <div className="menu__cross">
-              <button
-                type="button"
-                onClick={onMenuToggle}
-                className="icon icon--cross menu-close"
-              />
-            </div>
-          </div>
+          <MobileNavHeader />
 
           <NavList
             blockName="menu"
-            onLinkClick={onMenuToggle}
+            onLinkClick={toggle}
           />
 
           <LangSwicher className="menu__lang-swicher" />
 
-          <a
-            href="cart.html"
-            className=" menu__buy button button--size--full"
-          >
+          <Link to="cart" className="menu__buy button button--size--full">
             Buy
-          </a>
+          </Link>
         </div>
       </Container>
     </nav>
   );
-};
-
-export default memo(MobileNav);
+});

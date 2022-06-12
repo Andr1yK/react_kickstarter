@@ -1,4 +1,5 @@
 import { FC, memo } from 'react';
+import { Link } from 'react-router-dom';
 import LangSwicher from '../LangSwicher/LangSwicher';
 
 const HeaderNav: FC = () => {
@@ -10,9 +11,9 @@ const HeaderNav: FC = () => {
 
       <LangSwicher />
 
-      <a href="cart.html" className="header__buy button button--buy">
+      <Link to="cart" className="header__buy button button--buy">
         Buy
-      </a>
+      </Link>
     </div>
   );
 };

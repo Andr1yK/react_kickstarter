@@ -1,37 +1,25 @@
 import { FC, memo } from 'react';
+import { Link } from 'react-router-dom';
 import { headerImage } from '../../../../images';
 import Container from '../../../../layouts/Container/Container';
+import { Grid, GridItem } from '../../../../layouts/Grid';
 import './FirstScreen.scss';
 
 export const FirstScreen: FC = memo(() => {
   return (
     <section className="page__section first-screen">
       <Container>
-        <div
-          className="
-            first-screen__content
-            grid
-            grid--mobile-flex
-          "
-        >
-          <div
-            className="
-              grid__item
-              grid__item--t--1-3
-              grid__item--d--1-4
-              first-screen__text
-            "
+        <Grid className="first-screen__content" flexOnMobile>
+          <GridItem
+            className="first-screen__text"
+            fromTablet={[1, 3]}
+            fromDesktop={[1, 4]}
           >
             <h1 className="first-screen__title">
               Futuristic Wireless Speaker
-              <a
-                href="cart.html"
-                className="
-                    first-screen__cart
-                  "
-              >
+              <Link to="cart" className="first-screen__cart">
                 <span className="icon icon--contain icon--cart" />
-              </a>
+              </Link>
             </h1>
 
             <p className="first-screen__description">
@@ -39,15 +27,12 @@ export const FirstScreen: FC = memo(() => {
               ranges which makes the music both naturally pleasant and
               distinctly more layered.
             </p>
-          </div>
+          </GridItem>
 
-          <div
-            className="
-              grid__item
-              grid__item--t--4-8
-              grid__item--d--5-12
-              first-screen__image-conatiner
-            "
+          <GridItem
+            className="first-screen__image-conatiner"
+            fromTablet={[4, 8]}
+            fromDesktop={[5, 12]}
           >
             <img
               className="first-screen__image"
@@ -63,8 +48,8 @@ export const FirstScreen: FC = memo(() => {
               src={headerImage}
               alt="Futuristic Wireless Speaker"
             />
-          </div>
-        </div>
+          </GridItem>
+        </Grid>
       </Container>
     </section>
   );

@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import { StateProvider } from './store/stateContext';
 
 ReactDOM.render(
   <React.StrictMode>
-    <StateProvider>
-      <App />
-    </StateProvider>
+    <BrowserRouter>
+      <StateProvider>
+        <App />
+      </StateProvider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root'),
 );
