@@ -1,6 +1,7 @@
 .idea
 .vscode
 build
+dist
 node_modules
 .DS_Store
 
@@ -13,7 +14,4 @@ reports
 cypress/screenshots
 cypress/videos
 
-.env.local
-.env.development
-
-package-lock.json
+.local.env
