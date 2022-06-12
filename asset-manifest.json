@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "./static/css/main.bcb8492f.chunk.css",
+    "main.js": "./static/js/main.1620f055.chunk.js",
+    "main.js.map": "./static/js/main.1620f055.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.4acc0ab5.js",
+    "runtime-main.js.map": "./static/js/runtime-main.4acc0ab5.js.map",
+    "static/js/2.755128c2.chunk.js": "./static/js/2.755128c2.chunk.js",
+    "static/js/2.755128c2.chunk.js.map": "./static/js/2.755128c2.chunk.js.map",
+    "index.html": "./index.html",
+    "static/css/main.bcb8492f.chunk.css.map": "./static/css/main.bcb8492f.chunk.css.map",
+    "static/js/2.755128c2.chunk.js.LICENSE.txt": "./static/js/2.755128c2.chunk.js.LICENSE.txt",
+    "static/media/App.scss": "./static/media/visa.565f31da.svg",
+    "static/media/calipers.77e90a3d.svg": "./static/media/calipers.77e90a3d.svg",
+    "static/media/design.b979dbd6.jpg": "./static/media/design.b979dbd6.jpg",
+    "static/media/features-1920w.aa32cd31.png": "./static/media/features-1920w.aa32cd31.png",
+    "static/media/header-1024w.f1511bd8.png": "./static/media/header-1024w.f1511bd8.png",
+    "static/media/logo.9e117dfb.svg": "./static/media/logo.9e117dfb.svg",
+    "static/media/martin.6c5bc290.jpg": "./static/media/martin.6c5bc290.jpg",
+    "static/media/Technology.scss": "./static/media/quotes.5c35953f.svg",
+    "static/media/Carousel.scss": "./static/media/slider-arrow.226c7633.svg",
+    "static/media/speaker.d0be04d4.svg": "./static/media/speaker.d0be04d4.svg",
+    "static/media/sun.2c1383c2.svg": "./static/media/sun.2c1383c2.svg",
+    "static/media/technology-1024w.a94ba919.png": "./static/media/technology-1024w.a94ba919.png",
+    "static/media/wifi.67ad3946.svg": "./static/media/wifi.67ad3946.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4acc0ab5.js",
+    "static/js/2.755128c2.chunk.js",
+    "static/css/main.bcb8492f.chunk.css",
+    "static/js/main.1620f055.chunk.js"
+  ]
+}
