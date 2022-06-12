@@ -2,8 +2,7 @@ name: Lint
 
 on:
   pull_request:
-    branches:
-      - '**'
+    branches: [ master ]
 
 jobs:
   run_linter:
@@ -20,12 +19,5 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-
-      - name: Install Node.js dependencies
-        run: npm ci
-
-      - name: Run SCSS linter
-        run: npm run lint-css
-
-      - name: Run JS linter
-        run: npm run lint-js
+      - run: npm install
+      - run: npm run lint

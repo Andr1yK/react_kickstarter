@@ -1,6 +1,2 @@
 /build
-/dist
 /node_modules
-/cypress
-
-.local.env
