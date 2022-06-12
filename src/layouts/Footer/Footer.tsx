@@ -12,7 +12,7 @@ type Props = {
   className?: string;
 };
 
-const Footer: FC<Props> = ({ className }) => {
+const Footer: FC<Props> = ({ className = '' }) => {
   return (
     <footer className={`footer ${className}`}>
       <Container>
@@ -62,10 +62,6 @@ const Footer: FC<Props> = ({ className }) => {
       </Container>
     </footer>
   );
-};
-
-Footer.defaultProps = {
-  className: '',
 };
 
 export default memo(Footer);

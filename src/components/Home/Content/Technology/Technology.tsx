@@ -14,7 +14,9 @@ export const Technology: FC = memo(() => {
           <h2 className="technology__title grid__item grid__item--d--2-4">
             technology
           </h2>
-          <div className="technology__image-container grid__item grid__item--d--1-12">
+          <div className={'technology__image-container'
+            + 'grid__item grid__item--d--1-12'}
+          >
             <img
               src={technology}
               alt="technology"

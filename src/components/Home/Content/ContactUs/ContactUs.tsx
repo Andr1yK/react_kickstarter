@@ -31,26 +31,31 @@ export const ContactUs: FC = memo(() => {
     }
   };
 
-  const handleSubmit = useCallback((event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handleSubmit = useCallback(
+    (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
 
-    // eslint-disable-next-line no-useless-escape
-    const isEmailValid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
-    const isMessageValid = message.length > 30;
+      // eslint-disable-next-line no-useless-escape
+      const isEmailValid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+      const isMessageValid = message.length > 30;
 
-    setElementValid(emailRef.current, isEmailValid);
-    setElementValid(messageRef.current, isMessageValid);
+      setElementValid(emailRef.current, isEmailValid);
+      setElementValid(messageRef.current, isMessageValid);
 
-    if (isEmailValid && isMessageValid) {
-      setEmail('');
-      setMessage('');
-      setTimeout(() => window.scrollTo(0, 0), 500);
-      emailRef.current?.classList.remove('contact__form-field--valid');
-      messageRef.current?.classList.remove('contact__form-field--valid');
-    }
-  }, [email, message]);
+      if (isEmailValid && isMessageValid) {
+        setEmail('');
+        setMessage('');
+        setTimeout(() => window.scrollTo(0, 0), 500);
+        emailRef.current?.classList.remove('contact__form-field--valid');
+        messageRef.current?.classList.remove('contact__form-field--valid');
+      }
+    },
+    [email, message],
+  );
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = event.target;
 
     switch (name) {

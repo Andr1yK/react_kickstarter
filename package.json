@@ -7,11 +7,9 @@
     "start": "mate-scripts start",
     "build": "mate-scripts build",
     "test": "mate-scripts test",
-    "lint-js": "mate-scripts lint -j",
-    "lint-css": "mate-scripts lint -s",
+    "lint-js": "npx eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint-css": "npx stylelint \"**/*.scss\"",
     "lint": "npm run lint-js && npm run lint-css",
-    "update": "mate-scripts update",
-    "postinstall": "npm run update",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
@@ -52,16 +50,19 @@
     "mochawesome": "^6.2.1",
     "mochawesome-merge": "^4.2.0",
     "mochawesome-report-generator": "^5.1.0",
-    "stylelint": "^13.13.1"
+    "stylelint": "^14.9.1",
+    "stylelint-config-recommended-scss": "^6.0.0",
+    "stylelint-scss": "^4.2.0",
+    "postcss": "^8.4.13"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
   "lint-staged": {
-    "*.css": [
+    "*.scss": [
       "stylelint"
     ],
-    "*.js": [
+    "*.js, *.ts, *.tsx": [
       "eslint"
     ]
   },
@@ -83,7 +84,6 @@
     }
   },
   "mateAcademy": {
-    "_comment": "Replace 'reactTypescript' with 'react' if you want use React without Typescript",
     "projectType": "reactTypescript"
   }
 }
