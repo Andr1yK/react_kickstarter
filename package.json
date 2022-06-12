@@ -61,7 +61,7 @@
     "*.css": [
       "stylelint"
     ],
-    "*.js": [
+    "*.js, *.ts, *.tsx": [
       "eslint"
     ]
   },
@@ -83,7 +83,6 @@
     }
   },
   "mateAcademy": {
-    "_comment": "Replace 'reactTypescript' with 'react' if you want use React without Typescript",
     "projectType": "reactTypescript"
   }
 }
